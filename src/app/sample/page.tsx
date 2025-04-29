@@ -1,22 +1,39 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../page.module.css';
 
 const Sample = () => {
   const [board, setBoard] = useState<number[][]>([]);
-  const handleClick = async () => {
+
+  useEffect(() => {
+    void handleFetchBoard();
+  }, []);
+
+  const handleFetchBoard = async () => {
     const response = await fetch('/api');
     const data = await response.json();
-    setBoard(data.board.board.board);
+    setBoard(data.board.board);
   };
+  const handleUpdateBoard = async () => {
+    const response = await fetch('/api', {
+      method: 'PUT',
+      body: JSON.stringify({ board }),
+    });
+  };
+  const handleStoneClick = (x: number, y: number) => {
+    const newBoard = structuredClone(board);
+    newBoard[y][x] = 1;
+    setBoard(newBoard);
+  };
+
   return (
     <div>
-      <button onClick={handleClick}>button</button>
+      <button onClick={handleUpdateBoard}>handleUpdateBoard</button>
       <div className={styles.board}>
         {board.map((row, y) =>
           row.map((color, x) => (
-            <div key={`${x}-${y}`} className={styles.cell}>
+            <div key={`${x}-${y}`} className={styles.cell} onClick={() => handleStoneClick(x, y)}>
               <div
                 className={styles.stone}
                 style={{
