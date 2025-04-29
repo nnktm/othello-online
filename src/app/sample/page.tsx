@@ -5,10 +5,15 @@ import styles from '../page.module.css';
 
 const Sample = () => {
   const [board, setBoard] = useState<number[][]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     void handleFetchBoard();
   }, []);
+
+  useEffect(() => {
+    void handleUpdateBoard();
+  }, [board]);
 
   const handleFetchBoard = async () => {
     const response = await fetch('/api');
@@ -16,12 +21,15 @@ const Sample = () => {
     setBoard(data.board.board);
   };
   const handleUpdateBoard = async () => {
+    setIsLoading(true);
     const response = await fetch('/api', {
       method: 'PUT',
       body: JSON.stringify({ board }),
     });
+    setIsLoading(false);
   };
   const handleStoneClick = (x: number, y: number) => {
+    if (isLoading) return;
     const newBoard = structuredClone(board);
     newBoard[y][x] = 1;
     setBoard(newBoard);
@@ -29,7 +37,6 @@ const Sample = () => {
 
   return (
     <div>
-      <button onClick={handleUpdateBoard}>handleUpdateBoard</button>
       <div className={styles.board}>
         {board.map((row, y) =>
           row.map((color, x) => (
