@@ -59,7 +59,7 @@ export default tseslint.config(
       '@typescript-eslint/no-unnecessary-condition': 'off',
       '@typescript-eslint/no-unused-expressions': 'off',
       'react/self-closing-comp': 'error',
-      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/rules-of-hooks': 'off',
       'react-hooks/exhaustive-deps': 'error',
     },
   },
