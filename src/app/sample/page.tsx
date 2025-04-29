@@ -3,6 +3,17 @@
 import { useEffect, useState } from 'react';
 import styles from '../page.module.css';
 
+const initialBoard = [
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 1, 2, 0, 0, 0],
+  [0, 0, 0, 2, 1, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+];
+
 const Sample = () => {
   const [board, setBoard] = useState<number[][]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -34,9 +45,17 @@ const Sample = () => {
     newBoard[y][x] = 1;
     setBoard(newBoard);
   };
+  const handleResetBoard = async () => {
+    const response = await fetch('/api', {
+      method: 'PUT',
+      body: JSON.stringify({ board: initialBoard }),
+    });
+    void handleFetchBoard();
+  };
 
   return (
     <div>
+      <button onClick={handleResetBoard}>reset</button>
       <div className={styles.board}>
         {board.map((row, y) =>
           row.map((color, x) => (
