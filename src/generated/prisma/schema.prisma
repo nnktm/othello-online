@@ -16,6 +16,7 @@ datasource db {
 
 model Board {
   id        String   @id @default(uuid())
+  turn      Int
   board     Json
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

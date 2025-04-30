@@ -875,24 +875,37 @@ export namespace Prisma {
 
   export type AggregateBoard = {
     _count: BoardCountAggregateOutputType | null
+    _avg: BoardAvgAggregateOutputType | null
+    _sum: BoardSumAggregateOutputType | null
     _min: BoardMinAggregateOutputType | null
     _max: BoardMaxAggregateOutputType | null
   }
 
+  export type BoardAvgAggregateOutputType = {
+    turn: number | null
+  }
+
+  export type BoardSumAggregateOutputType = {
+    turn: number | null
+  }
+
   export type BoardMinAggregateOutputType = {
     id: string | null
+    turn: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type BoardMaxAggregateOutputType = {
     id: string | null
+    turn: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type BoardCountAggregateOutputType = {
     id: number
+    turn: number
     board: number
     createdAt: number
     updatedAt: number
@@ -900,20 +913,31 @@ export namespace Prisma {
   }
 
 
+  export type BoardAvgAggregateInputType = {
+    turn?: true
+  }
+
+  export type BoardSumAggregateInputType = {
+    turn?: true
+  }
+
   export type BoardMinAggregateInputType = {
     id?: true
+    turn?: true
     createdAt?: true
     updatedAt?: true
   }
 
   export type BoardMaxAggregateInputType = {
     id?: true
+    turn?: true
     createdAt?: true
     updatedAt?: true
   }
 
   export type BoardCountAggregateInputType = {
     id?: true
+    turn?: true
     board?: true
     createdAt?: true
     updatedAt?: true
@@ -958,6 +982,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: BoardAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BoardSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: BoardMinAggregateInputType
@@ -988,16 +1024,21 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: BoardCountAggregateInputType | true
+    _avg?: BoardAvgAggregateInputType
+    _sum?: BoardSumAggregateInputType
     _min?: BoardMinAggregateInputType
     _max?: BoardMaxAggregateInputType
   }
 
   export type BoardGroupByOutputType = {
     id: string
+    turn: number
     board: JsonValue
     createdAt: Date
     updatedAt: Date
     _count: BoardCountAggregateOutputType | null
+    _avg: BoardAvgAggregateOutputType | null
+    _sum: BoardSumAggregateOutputType | null
     _min: BoardMinAggregateOutputType | null
     _max: BoardMaxAggregateOutputType | null
   }
@@ -1018,6 +1059,7 @@ export namespace Prisma {
 
   export type BoardSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    turn?: boolean
     board?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -1025,6 +1067,7 @@ export namespace Prisma {
 
   export type BoardSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    turn?: boolean
     board?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -1032,6 +1075,7 @@ export namespace Prisma {
 
   export type BoardSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    turn?: boolean
     board?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -1039,18 +1083,20 @@ export namespace Prisma {
 
   export type BoardSelectScalar = {
     id?: boolean
+    turn?: boolean
     board?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type BoardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "board" | "createdAt" | "updatedAt", ExtArgs["result"]["board"]>
+  export type BoardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "turn" | "board" | "createdAt" | "updatedAt", ExtArgs["result"]["board"]>
 
   export type $BoardPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Board"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      turn: number
       board: Prisma.JsonValue
       createdAt: Date
       updatedAt: Date
@@ -1478,6 +1524,7 @@ export namespace Prisma {
    */
   interface BoardFieldRefs {
     readonly id: FieldRef<"Board", 'String'>
+    readonly turn: FieldRef<"Board", 'Int'>
     readonly board: FieldRef<"Board", 'Json'>
     readonly createdAt: FieldRef<"Board", 'DateTime'>
     readonly updatedAt: FieldRef<"Board", 'DateTime'>
@@ -1863,6 +1910,7 @@ export namespace Prisma {
 
   export const BoardScalarFieldEnum: {
     id: 'id',
+    turn: 'turn',
     board: 'board',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -1923,6 +1971,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Json'
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -1951,16 +2013,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'Float'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
 
 
   /**
-   * Reference to a field of type 'Int[]'
+   * Reference to a field of type 'Float[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -1972,6 +2034,7 @@ export namespace Prisma {
     OR?: BoardWhereInput[]
     NOT?: BoardWhereInput | BoardWhereInput[]
     id?: StringFilter<"Board"> | string
+    turn?: IntFilter<"Board"> | number
     board?: JsonFilter<"Board">
     createdAt?: DateTimeFilter<"Board"> | Date | string
     updatedAt?: DateTimeFilter<"Board"> | Date | string
@@ -1979,6 +2042,7 @@ export namespace Prisma {
 
   export type BoardOrderByWithRelationInput = {
     id?: SortOrder
+    turn?: SortOrder
     board?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -1989,6 +2053,7 @@ export namespace Prisma {
     AND?: BoardWhereInput | BoardWhereInput[]
     OR?: BoardWhereInput[]
     NOT?: BoardWhereInput | BoardWhereInput[]
+    turn?: IntFilter<"Board"> | number
     board?: JsonFilter<"Board">
     createdAt?: DateTimeFilter<"Board"> | Date | string
     updatedAt?: DateTimeFilter<"Board"> | Date | string
@@ -1996,12 +2061,15 @@ export namespace Prisma {
 
   export type BoardOrderByWithAggregationInput = {
     id?: SortOrder
+    turn?: SortOrder
     board?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: BoardCountOrderByAggregateInput
+    _avg?: BoardAvgOrderByAggregateInput
     _max?: BoardMaxOrderByAggregateInput
     _min?: BoardMinOrderByAggregateInput
+    _sum?: BoardSumOrderByAggregateInput
   }
 
   export type BoardScalarWhereWithAggregatesInput = {
@@ -2009,6 +2077,7 @@ export namespace Prisma {
     OR?: BoardScalarWhereWithAggregatesInput[]
     NOT?: BoardScalarWhereWithAggregatesInput | BoardScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Board"> | string
+    turn?: IntWithAggregatesFilter<"Board"> | number
     board?: JsonWithAggregatesFilter<"Board">
     createdAt?: DateTimeWithAggregatesFilter<"Board"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Board"> | Date | string
@@ -2016,6 +2085,7 @@ export namespace Prisma {
 
   export type BoardCreateInput = {
     id?: string
+    turn: number
     board: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -2023,6 +2093,7 @@ export namespace Prisma {
 
   export type BoardUncheckedCreateInput = {
     id?: string
+    turn: number
     board: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -2030,6 +2101,7 @@ export namespace Prisma {
 
   export type BoardUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2037,6 +2109,7 @@ export namespace Prisma {
 
   export type BoardUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2044,6 +2117,7 @@ export namespace Prisma {
 
   export type BoardCreateManyInput = {
     id?: string
+    turn: number
     board: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -2051,6 +2125,7 @@ export namespace Prisma {
 
   export type BoardUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2058,6 +2133,7 @@ export namespace Prisma {
 
   export type BoardUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2076,6 +2152,17 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -2114,21 +2201,32 @@ export namespace Prisma {
 
   export type BoardCountOrderByAggregateInput = {
     id?: SortOrder
+    turn?: SortOrder
     board?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
+  export type BoardAvgOrderByAggregateInput = {
+    turn?: SortOrder
+  }
+
   export type BoardMaxOrderByAggregateInput = {
     id?: SortOrder
+    turn?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type BoardMinOrderByAggregateInput = {
     id?: SortOrder
+    turn?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type BoardSumOrderByAggregateInput = {
+    turn?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -2147,6 +2245,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
   export type JsonWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -2193,6 +2307,14 @@ export namespace Prisma {
     set?: string
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
@@ -2209,6 +2331,17 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -2239,7 +2372,7 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedIntFilter<$PrismaModel = never> = {
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -2247,7 +2380,23 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
   export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<
