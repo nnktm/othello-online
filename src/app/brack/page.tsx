@@ -3,6 +3,13 @@
 import { useEffect, useState } from 'react';
 import styles from '../page.module.css';
 
+type boardResponse = {
+  board: {
+    board: number[][];
+    turn: number;
+  };
+};
+
 const initialBoard = [
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
@@ -70,16 +77,16 @@ const turnCell = (cx: number, cy: number, board: number[][], turn: number) => {
   return true;
 };
 
-const Sample2 = () => {
-  const [board, setBoard] = useState(initialBoard);
-  const [turn, setTurn] = useState(1);
+const Brack = () => {
+  const [board, setBoard] = useState<number[][]>(initialBoard);
+  const [turn, setTurn] = useState<number>(1);
   const [isLoading, setIsLoading] = useState(false);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     void handleFetchBoard();
-  //   }, 2000);
-  // }, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      void handleFetchBoard();
+    }, 2000);
+  }, []);
 
   useEffect(() => {
     void handleUpdateBoard();
@@ -87,7 +94,7 @@ const Sample2 = () => {
 
   const handleFetchBoard = async () => {
     const response = await fetch('/api');
-    const data = await response.json();
+    const data: boardResponse = (await response.json()) as boardResponse;
     setBoard(data.board.board);
     setTurn(data.board.turn);
   };
@@ -114,6 +121,7 @@ const Sample2 = () => {
 
   const handleOnClick = (x: number, y: number) => {
     if (isLoading) return;
+    if (turn === 2) return;
     if (board[y][x] !== 0 || checkPutable(x, y, board, turn) === false) {
       return;
     }
@@ -178,19 +186,17 @@ const Sample2 = () => {
               <div className={styles.modalHeader}>
                 <h1>ゲーム終了</h1>
               </div>
-              <div className={styles.modalBody}>
-                <p>
-                  黒の数{values.blackCell} 対 白の数{values.whiteCell}で
-                </p>
-                <h2>
-                  {values.winner === '白' || values.winner === '黒'
-                    ? `${JSON.stringify(values.winner)}の勝ち!!`
-                    : '引き分け'}
-                </h2>
-                <span className={styles.modalClose} onClick={closeModal}>
-                  閉じる
-                </span>
-              </div>
+              <p>
+                黒の数{values.blackCell} 対 白の数{values.whiteCell}で
+              </p>
+              <h2>
+                {values.winner === '白' || values.winner === '黒'
+                  ? `${JSON.stringify(values.winner)}の勝ち!!`
+                  : '引き分け'}
+              </h2>
+              <span className={styles.modalClose} onClick={closeModal}>
+                閉じる
+              </span>
             </div>
           </div>
         ) : null}
@@ -198,28 +204,29 @@ const Sample2 = () => {
           {boardView.map((row, y) =>
             row.map((color, x) => (
               <div key={`${x}-${y}`} className={styles.cell} onClick={() => handleOnClick(x, y)}>
-                <div
-                  className={styles.stone}
-                  style={{
-                    backgroundColor:
-                      color === 1
-                        ? '#212b33'
-                        : color === 2
-                          ? 'white'
-                          : color === 3
-                            ? '#d86161'
-                            : '',
-                    width: color === 3 ? '30%' : '70%',
-                    height: color === 3 ? '30%' : '70%',
-                  }}
-                />
+                {color === 1 ? (
+                  <div
+                    className={styles.stone}
+                    style={{ backgroundColor: '#212b33', width: '70%', height: '70%' }}
+                  />
+                ) : color === 2 ? (
+                  <div
+                    className={styles.stone}
+                    style={{ backgroundColor: 'white', width: '70%', height: '70%' }}
+                  />
+                ) : color === 3 && turn === 1 ? (
+                  <div
+                    className={styles.stone}
+                    style={{ backgroundColor: '#d86161', width: '30%', height: '30%' }}
+                  />
+                ) : null}
               </div>
             )),
           )}
         </div>
         <div className={styles.infomation}>
           <div className={styles.showInformation}>
-            <p>{turn === 1 ? '黒のターン' : '白のターン'}</p>
+            <p>{turn === 1 ? '黒のターン' : '相手のターン'}</p>
             <p>黒：{values.blackCell}枚</p>
             <p>白：{values.whiteCell}枚</p>
           </div>
@@ -232,4 +239,4 @@ const Sample2 = () => {
   );
 };
 
-export default Sample2;
+export default Brack;
