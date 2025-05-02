@@ -13,7 +13,7 @@ export const GET = async () => {
 
 export const PUT = async (req: Request) => {
   const prisma = new PrismaClient();
-  const { board, turn } = await req.json();
+  const { board, turn } = (await req.json()) as { board: number[][]; turn: number };
 
   const newBoard = await prisma.board.update({
     where: { id: '1' },

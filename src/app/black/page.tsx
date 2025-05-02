@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styles from '../page.module.css';
 
 type boardResponse = {
@@ -83,25 +83,26 @@ const Black = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isPutting, setIsPutting] = useState(false);
 
+  const handleFetchBoard = useCallback(async () => {
+    if (isPutting) return;
+    const response = await fetch('/api');
+    const data: boardResponse = (await response.json()) as boardResponse;
+    setBoard(data.board.board);
+    setTurn(data.board.turn);
+  }, [isPutting]);
+
   useEffect(() => {
     if (isPutting) return;
     const interval = setInterval(() => {
       void handleFetchBoard();
     }, 500);
     return () => clearInterval(interval);
-  }, []);
+  }, [isPutting, handleFetchBoard]);
 
   // useEffect(() => {
   //   void handleUpdateBoard();
   // }, [board]);
 
-  const handleFetchBoard = async () => {
-    if (isPutting) return;
-    const response = await fetch('/api');
-    const data: boardResponse = (await response.json()) as boardResponse;
-    setBoard(data.board.board);
-    setTurn(data.board.turn);
-  };
   const handleUpdateBoard = async (updatedBoard: number[][], updatedTurn: number) => {
     setIsLoading(true);
     await fetch('/api', {
@@ -116,7 +117,7 @@ const Black = () => {
   };
 
   const boardReset = async () => {
-    const response = await fetch('/api', {
+    await fetch('/api', {
       method: 'PUT',
       body: JSON.stringify({ board: initialBoard, turn: 1 }),
     });
