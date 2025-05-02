@@ -28,3 +28,6 @@ npm-debug.log*
 
 # vercel
 .vercel
+
+# Prisma 自動生成コードを Git に含めない
+src/generated/prisma/
