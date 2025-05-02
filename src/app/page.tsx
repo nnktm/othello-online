@@ -147,19 +147,17 @@ const Home = () => {
               <div className={styles.modalHeader}>
                 <h1>ゲーム終了</h1>
               </div>
-              <div className={styles.modalBody}>
-                <p>
-                  黒の数{values.blackCell} 対 白の数{values.whiteCell}で
-                </p>
-                <h2>
-                  {values.winner === '白' || values.winner === '黒'
-                    ? `${JSON.stringify(values.winner)}の勝ち!!`
-                    : '引き分け'}
-                </h2>
-                <span className={styles.modalClose} onClick={closeModal}>
-                  閉じる
-                </span>
-              </div>
+              <p>
+                黒の数{values.blackCell} 対 白の数{values.whiteCell}で
+              </p>
+              <h2>
+                {values.winner === '白' || values.winner === '黒'
+                  ? `${JSON.stringify(values.winner)}の勝ち!!`
+                  : '引き分け'}
+              </h2>
+              <span className={styles.modalClose} onClick={closeModal}>
+                閉じる
+              </span>
             </div>
           </div>
         ) : null}
