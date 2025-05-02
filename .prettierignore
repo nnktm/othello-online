@@ -1,2 +1,5 @@
 # 自動生成されたPrisma関連のファイルを除外
 src/generated/prisma/**
+
+# Next.js のビルド出力を無視
+.next/

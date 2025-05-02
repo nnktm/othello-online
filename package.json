@@ -10,7 +10,7 @@
     "build": "next build",
     "lint": "run-p lint:*",
     "lint:js": "eslint .",
-    "lint:prettier": "prettier --check \"./**/*.{ts,tsx,js}\" --ignore-path .gitignore",
+    "lint:prettier": "prettier --check \"./**/*.{ts,tsx,js}\" --ignore-path .prettierignore",
     "lint:style": "stylelint \"src/**/*.css\" --ignore-path .gitignore",
     "fix:lint": "npm run lint:js -- --fix && npm run lint:style -- --fix && npm run lint:prettier -- --write",
     "start": "next start",
