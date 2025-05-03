@@ -882,22 +882,24 @@ export namespace Prisma {
   }
 
   export type BoardAvgAggregateOutputType = {
+    id: number | null
     turn: number | null
   }
 
   export type BoardSumAggregateOutputType = {
+    id: number | null
     turn: number | null
   }
 
   export type BoardMinAggregateOutputType = {
-    id: string | null
+    id: number | null
     turn: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type BoardMaxAggregateOutputType = {
-    id: string | null
+    id: number | null
     turn: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -914,10 +916,12 @@ export namespace Prisma {
 
 
   export type BoardAvgAggregateInputType = {
+    id?: true
     turn?: true
   }
 
   export type BoardSumAggregateInputType = {
+    id?: true
     turn?: true
   }
 
@@ -1031,7 +1035,7 @@ export namespace Prisma {
   }
 
   export type BoardGroupByOutputType = {
-    id: string
+    id: number
     turn: number
     board: JsonValue
     createdAt: Date
@@ -1095,7 +1099,7 @@ export namespace Prisma {
     name: "Board"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
-      id: string
+      id: number
       turn: number
       board: Prisma.JsonValue
       createdAt: Date
@@ -1523,7 +1527,7 @@ export namespace Prisma {
    * Fields of the Board model
    */
   interface BoardFieldRefs {
-    readonly id: FieldRef<"Board", 'String'>
+    readonly id: FieldRef<"Board", 'Int'>
     readonly turn: FieldRef<"Board", 'Int'>
     readonly board: FieldRef<"Board", 'Json'>
     readonly createdAt: FieldRef<"Board", 'DateTime'>
@@ -1934,14 +1938,6 @@ export namespace Prisma {
   export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
-  export const QueryMode: {
-    default: 'default',
-    insensitive: 'insensitive'
-  };
-
-  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
-
   export const JsonNullValueFilter: {
     DbNull: typeof DbNull,
     JsonNull: typeof JsonNull,
@@ -1951,23 +1947,17 @@ export namespace Prisma {
   export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
+  };
+
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
   /**
    * Field references
    */
-
-
-  /**
-   * Reference to a field of type 'String'
-   */
-  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
-    
-
-
-  /**
-   * Reference to a field of type 'String[]'
-   */
-  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
-    
 
 
   /**
@@ -1995,6 +1985,13 @@ export namespace Prisma {
    * Reference to a field of type 'QueryMode'
    */
   export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
+   * Reference to a field of type 'String'
+   */
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
     
 
 
@@ -2033,7 +2030,7 @@ export namespace Prisma {
     AND?: BoardWhereInput | BoardWhereInput[]
     OR?: BoardWhereInput[]
     NOT?: BoardWhereInput | BoardWhereInput[]
-    id?: StringFilter<"Board"> | string
+    id?: IntFilter<"Board"> | number
     turn?: IntFilter<"Board"> | number
     board?: JsonFilter<"Board">
     createdAt?: DateTimeFilter<"Board"> | Date | string
@@ -2049,7 +2046,7 @@ export namespace Prisma {
   }
 
   export type BoardWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
+    id?: number
     AND?: BoardWhereInput | BoardWhereInput[]
     OR?: BoardWhereInput[]
     NOT?: BoardWhereInput | BoardWhereInput[]
@@ -2076,7 +2073,7 @@ export namespace Prisma {
     AND?: BoardScalarWhereWithAggregatesInput | BoardScalarWhereWithAggregatesInput[]
     OR?: BoardScalarWhereWithAggregatesInput[]
     NOT?: BoardScalarWhereWithAggregatesInput | BoardScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Board"> | string
+    id?: IntWithAggregatesFilter<"Board"> | number
     turn?: IntWithAggregatesFilter<"Board"> | number
     board?: JsonWithAggregatesFilter<"Board">
     createdAt?: DateTimeWithAggregatesFilter<"Board"> | Date | string
@@ -2084,7 +2081,6 @@ export namespace Prisma {
   }
 
   export type BoardCreateInput = {
-    id?: string
     turn: number
     board: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
@@ -2092,7 +2088,7 @@ export namespace Prisma {
   }
 
   export type BoardUncheckedCreateInput = {
-    id?: string
+    id?: number
     turn: number
     board: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
@@ -2100,7 +2096,6 @@ export namespace Prisma {
   }
 
   export type BoardUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
     turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2108,7 +2103,7 @@ export namespace Prisma {
   }
 
   export type BoardUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2116,7 +2111,7 @@ export namespace Prisma {
   }
 
   export type BoardCreateManyInput = {
-    id?: string
+    id?: number
     turn: number
     board: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
@@ -2124,7 +2119,6 @@ export namespace Prisma {
   }
 
   export type BoardUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
     turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2132,26 +2126,11 @@ export namespace Prisma {
   }
 
   export type BoardUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type StringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -2208,6 +2187,7 @@ export namespace Prisma {
   }
 
   export type BoardAvgOrderByAggregateInput = {
+    id?: SortOrder
     turn?: SortOrder
   }
 
@@ -2226,25 +2206,8 @@ export namespace Prisma {
   }
 
   export type BoardSumOrderByAggregateInput = {
+    id?: SortOrder
     turn?: SortOrder
-  }
-
-  export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -2303,10 +2266,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
-  }
-
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -2317,20 +2276,6 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
-  }
-
-  export type NestedStringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -2353,23 +2298,6 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {

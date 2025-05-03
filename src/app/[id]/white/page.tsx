@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import styles from '../page.module.css';
+import styles from '../../page.module.css';
 
 type BoardResponse = {
   board: {
@@ -221,8 +221,8 @@ const White = () => {
                   />
                 ) : color === 3 && turn === 2 ? (
                   <div
-                    className={styles.stone}
-                    style={{ backgroundColor: '#d86161', width: '30%', height: '30%' }}
+                    className={styles.navigation}
+                    style={{ backgroundColor: '#14146136', width: '95%', height: '95%' }}
                   />
                 ) : null}
               </div>
@@ -238,6 +238,9 @@ const White = () => {
           <button className={styles.reset} onClick={boardReset}>
             盤面をリセットする
           </button>
+          <a href="/" className={styles.index}>
+            メインメニューに戻る
+          </a>
         </div>
       </div>
     </>

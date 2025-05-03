@@ -63,6 +63,10 @@
   border-radius: 50%;
 }
 
+.navigation {
+  border-radius: 5%;
+}
+
 .modal {
   position: absolute;
   z-index: 999;
@@ -111,6 +115,22 @@
 }
 
 .modalClose:hover {
+  color: #fff;
+  background: #0c2935;
+}
+
+.index {
+  display: flex;
+  padding: 3px;
+  margin: 3% 20%;
+  color: #113847;
+  text-align: center;
+  background-color: #c3c8cc;
+  border: double 5px #2c434d;
+  border-radius: 20px;
+}
+
+.index:hover {
   color: #fff;
   background: #0c2935;
 }

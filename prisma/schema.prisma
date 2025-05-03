@@ -15,7 +15,7 @@ datasource db {
 }
 
 model Board {
-  id        String   @id @default(uuid())
+  id        Int   @id @default(autoincrement())
   turn      Int
   board     Json
   createdAt DateTime @default(now())

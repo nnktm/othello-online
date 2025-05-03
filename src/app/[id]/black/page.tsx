@@ -1,8 +1,8 @@
 'use client';
 
+import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
-import styles from '../page.module.css';
-
+import styles from '../../page.module.css';
 type boardResponse = {
   board: {
     board: number[][];
@@ -82,14 +82,16 @@ const Black = () => {
   const [turn, setTurn] = useState<number>(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isPutting, setIsPutting] = useState(false);
+  const params = useParams();
+  const id = params.id as string;
 
   const handleFetchBoard = useCallback(async () => {
     if (isPutting) return;
-    const response = await fetch('/api');
+    const response = await fetch(`../../../api/gameStart/${id}`);
     const data: boardResponse = (await response.json()) as boardResponse;
     setBoard(data.board.board);
     setTurn(data.board.turn);
-  }, [isPutting]);
+  }, [isPutting, id]);
 
   useEffect(() => {
     if (isPutting) return;
@@ -104,8 +106,9 @@ const Black = () => {
   // }, [board]);
 
   const handleUpdateBoard = async (updatedBoard: number[][], updatedTurn: number) => {
+    console.log(id);
     setIsLoading(true);
-    await fetch('/api', {
+    await fetch(`../../../api/gameStart/${id}`, {
       method: 'PUT',
       body: JSON.stringify({ board: updatedBoard, turn: updatedTurn }),
     });
@@ -117,7 +120,7 @@ const Black = () => {
   };
 
   const boardReset = async () => {
-    await fetch('/api', {
+    await fetch(`../../../api/gameStart/${id}`, {
       method: 'PUT',
       body: JSON.stringify({ board: initialBoard, turn: 1 }),
     });
@@ -225,8 +228,8 @@ const Black = () => {
                   />
                 ) : color === 3 && turn === 1 ? (
                   <div
-                    className={styles.stone}
-                    style={{ backgroundColor: '#d86161', width: '30%', height: '30%' }}
+                    className={styles.navigation}
+                    style={{ backgroundColor: '#14146136', width: '95%', height: '95%' }}
                   />
                 ) : null}
               </div>
@@ -242,6 +245,9 @@ const Black = () => {
           <button className={styles.reset} onClick={boardReset}>
             盤面をリセットする
           </button>
+          <a href="/" className={styles.index}>
+            メインメニューに戻る
+          </a>
         </div>
       </div>
     </>
