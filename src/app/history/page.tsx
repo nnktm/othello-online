@@ -19,7 +19,7 @@ const HistoryPage = () => {
   }, []);
   const handleHistoryFetch = async () => {
     const res: Response = await fetch('/api/history');
-    const data: BoardResponse = await res.json();
+    const data: BoardResponse = (await res.json()) as BoardResponse;
     setBoards(data.boards);
   };
   return (
@@ -30,7 +30,10 @@ const HistoryPage = () => {
           <li key={board.id}>
             <div className={styles.game}>
               <p>
-                <strong>ID:</strong> <a href={`/${board.id}/gameStart`}>{board.id}</a>
+                <strong>ID:</strong>{' '}
+                <a href={`/${board.id}/gameStart`} className={styles.link}>
+                  {board.id}
+                </a>
               </p>
               <div className={styles.time}>
                 <p>

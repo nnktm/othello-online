@@ -16,10 +16,6 @@
 
 .button {
   display: flex;
-  flex-direction: column;
-}
-
-.button a {
   padding: 20px;
   margin: 20px;
   font-size: 30px;

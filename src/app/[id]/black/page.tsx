@@ -246,6 +246,9 @@ const Black = () => {
           <button className={styles.reset} onClick={boardReset}>
             盤面をリセットする
           </button>
+          <a href="/" className={styles.return}>
+            メニューに戻る
+          </a>
         </div>
       </div>
     </>

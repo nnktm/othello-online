@@ -28,3 +28,7 @@
   display: flex;
   flex-direction: row;
 }
+
+.link {
+  border-bottom: solid 3px #5a5d68;
+}
