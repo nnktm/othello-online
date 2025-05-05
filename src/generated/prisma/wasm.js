@@ -122,6 +122,8 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.BoardScalarFieldEnum = {
   id: 'id',
+  black: 'black',
+  white: 'white',
   turn: 'turn',
   board: 'board',
   createdAt: 'createdAt',
