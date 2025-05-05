@@ -1,9 +1,10 @@
 'use client';
 
+import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
-import styles from '../page.module.css';
+import styles from '../../page.module.css';
 
-type BoardResponse = {
+type boardResponse = {
   board: {
     board: number[][];
     turn: number;
@@ -77,19 +78,22 @@ const turnCell = (cx: number, cy: number, board: number[][], turn: number) => {
   return true;
 };
 
-const White = () => {
-  const [board, setBoard] = useState(initialBoard);
-  const [turn, setTurn] = useState(1);
+const Black = () => {
+  const [board, setBoard] = useState<number[][]>(initialBoard);
+  const [turn, setTurn] = useState<number>(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isPutting, setIsPutting] = useState(false);
 
+  const params = useParams();
+  const id = params.id as string;
+
   const handleFetchBoard = useCallback(async () => {
     if (isPutting) return;
-    const response = await fetch('/api/simple');
-    const data: BoardResponse = (await response.json()) as BoardResponse;
+    const response = await fetch(`/api/separate?id=${id}`);
+    const data: boardResponse = (await response.json()) as boardResponse;
     setBoard(data.board.board);
     setTurn(data.board.turn);
-  }, [isPutting]);
+  }, [isPutting, id]);
 
   useEffect(() => {
     if (isPutting) return;
@@ -99,11 +103,15 @@ const White = () => {
     return () => clearInterval(interval);
   }, [isPutting, handleFetchBoard]);
 
+  // useEffect(() => {
+  //   void handleUpdateBoard();
+  // }, [board]);
+
   const handleUpdateBoard = async (updatedBoard: number[][], updatedTurn: number) => {
     setIsLoading(true);
-    await fetch('/api/simple', {
+    await fetch(`/api/separate?id=${id}`, {
       method: 'PUT',
-      body: JSON.stringify({ board: updatedBoard, turn: updatedTurn }),
+      body: JSON.stringify({ id, board: updatedBoard, turn: updatedTurn }),
     });
     setIsLoading(false);
   };
@@ -113,16 +121,16 @@ const White = () => {
   };
 
   const boardReset = async () => {
-    await fetch('/api/simple', {
+    await fetch(`/api/separate?id=${id}`, {
       method: 'PUT',
-      body: JSON.stringify({ board: initialBoard, turn: 1 }),
+      body: JSON.stringify({ id, board: initialBoard, turn: 1 }),
     });
     void handleFetchBoard();
   };
 
   const handleOnClick = async (x: number, y: number) => {
     if (isLoading) return;
-    if (turn === 1) return;
+    if (turn === 2) return;
     if (board[y][x] !== 0 || checkPutable(x, y, board, turn) === false) {
       return;
     }
@@ -219,7 +227,7 @@ const White = () => {
                     className={styles.stone}
                     style={{ backgroundColor: 'white', width: '70%', height: '70%' }}
                   />
-                ) : color === 3 && turn === 2 ? (
+                ) : color === 3 && turn === 1 ? (
                   <div
                     className={styles.stone}
                     style={{ backgroundColor: '#d86161', width: '30%', height: '30%' }}
@@ -231,7 +239,7 @@ const White = () => {
         </div>
         <div className={styles.infomation}>
           <div className={styles.showInformation}>
-            <p>{turn === 1 ? '相手のターン' : '白のターン'}</p>
+            <p>{turn === 1 ? '黒のターン' : '相手のターン'}</p>
             <p>黒：{values.blackCell}枚</p>
             <p>白：{values.whiteCell}枚</p>
           </div>
@@ -244,4 +252,4 @@ const White = () => {
   );
 };
 
-export default White;
+export default Black;

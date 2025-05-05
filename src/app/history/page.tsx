@@ -30,7 +30,7 @@ const HistoryPage = () => {
           <li key={board.id}>
             <div className={styles.game}>
               <p>
-                <strong>ID:</strong> <a href={`${board.id}/gameStart`}>{board.id}</a>
+                <strong>ID:</strong> <a href={`/${board.id}/gameStart`}>{board.id}</a>
               </p>
               <div className={styles.time}>
                 <p>

@@ -85,8 +85,9 @@ const Black = () => {
 
   const handleFetchBoard = useCallback(async () => {
     if (isPutting) return;
-    const response = await fetch('/api');
+    const response = await fetch('/api/simple');
     const data: boardResponse = (await response.json()) as boardResponse;
+    console.log(data.board.board);
     setBoard(data.board.board);
     setTurn(data.board.turn);
   }, [isPutting]);
@@ -105,7 +106,7 @@ const Black = () => {
 
   const handleUpdateBoard = async (updatedBoard: number[][], updatedTurn: number) => {
     setIsLoading(true);
-    await fetch('/api', {
+    await fetch('/api/simple', {
       method: 'PUT',
       body: JSON.stringify({ board: updatedBoard, turn: updatedTurn }),
     });
@@ -117,7 +118,7 @@ const Black = () => {
   };
 
   const boardReset = async () => {
-    await fetch('/api', {
+    await fetch('/api/simple', {
       method: 'PUT',
       body: JSON.stringify({ board: initialBoard, turn: 1 }),
     });

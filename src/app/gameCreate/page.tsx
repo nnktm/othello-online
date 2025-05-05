@@ -1,13 +1,14 @@
 'use client';
-// type ApiResponse = { id: string };
-// const router = useRouter();
+import { useRouter } from 'next/navigation';
+type ApiResponse = { id: string };
 
 const GameCreate = () => {
+  const router = useRouter();
   const handleCreateGame = async () => {
-    // const response =
-    await fetch('/api', { method: 'POST' });
-    // const data = (await response.json()) as ApiResponse;
-    // router.push(`${data.id}/startGame`);
+    const response = await fetch('/api/simple', { method: 'POST' });
+    const data = (await response.json()) as ApiResponse;
+    console.log(data);
+    void router.push(`/${data.id}/gameStart`);
   };
   return (
     <div>

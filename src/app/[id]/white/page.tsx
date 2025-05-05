@@ -1,7 +1,8 @@
 'use client';
 
+import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
-import styles from '../page.module.css';
+import styles from '../../page.module.css';
 
 type BoardResponse = {
   board: {
@@ -83,13 +84,16 @@ const White = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isPutting, setIsPutting] = useState(false);
 
+  const params = useParams();
+  const id = params.id as string;
+
   const handleFetchBoard = useCallback(async () => {
     if (isPutting) return;
-    const response = await fetch('/api/simple');
+    const response = await fetch(`/api/separate?id=${id}`);
     const data: BoardResponse = (await response.json()) as BoardResponse;
     setBoard(data.board.board);
     setTurn(data.board.turn);
-  }, [isPutting]);
+  }, [isPutting, id]);
 
   useEffect(() => {
     if (isPutting) return;
@@ -101,9 +105,9 @@ const White = () => {
 
   const handleUpdateBoard = async (updatedBoard: number[][], updatedTurn: number) => {
     setIsLoading(true);
-    await fetch('/api/simple', {
+    await fetch(`/api/separate?id=${id}`, {
       method: 'PUT',
-      body: JSON.stringify({ board: updatedBoard, turn: updatedTurn }),
+      body: JSON.stringify({ id, board: updatedBoard, turn: updatedTurn }),
     });
     setIsLoading(false);
   };
@@ -113,9 +117,9 @@ const White = () => {
   };
 
   const boardReset = async () => {
-    await fetch('/api/simple', {
+    await fetch(`/api/separate?id=${id}`, {
       method: 'PUT',
-      body: JSON.stringify({ board: initialBoard, turn: 1 }),
+      body: JSON.stringify({ id, board: initialBoard, turn: 1 }),
     });
     void handleFetchBoard();
   };

@@ -1,8 +1,11 @@
-import { PrismaClient } from '../../generated/prisma';
+import { PrismaClient } from '../../../generated/prisma';
 
 export const GET = async () => {
   const prisma = new PrismaClient();
-  const board = await prisma.board.findFirst({
+  const board = await prisma.board.findUnique({
+    where: {
+      id: '1',
+    },
     select: {
       board: true,
       turn: true,
