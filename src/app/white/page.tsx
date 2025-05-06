@@ -84,8 +84,8 @@ const White = () => {
   const [turn, setTurn] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isPutting, setIsPutting] = useState(false);
-  const [isBlack, setIsBlack] = useState(`black_player`);
-  const [isWhite, setIsWhite] = useState(`white_player`);
+  const [isBlack, setIsBlack] = useState(`blackPlayer`);
+  const [isWhite, setIsWhite] = useState(`whitePlayer`);
 
   const handleFetchBoard = useCallback(async () => {
     if (isPutting) return;

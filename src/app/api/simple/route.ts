@@ -28,9 +28,12 @@ export const PUT = async (req: Request) => {
   return Response.json({ newBoard });
 };
 
-export const POST = async () => {
+export const POST = async (req: Request) => {
   const prisma = new PrismaClient();
-  const player = 'nene';
+  const { blackPlayer, whitePlayer } = (await req.json()) as {
+    blackPlayer: string;
+    whitePlayer: string;
+  };
   const initialBoard = [
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -43,8 +46,8 @@ export const POST = async () => {
   ];
   const newBoard = await prisma.board.create({
     data: {
-      black: player,
-      white: player,
+      black: blackPlayer,
+      white: whitePlayer,
       board: initialBoard,
       turn: 1,
     },
