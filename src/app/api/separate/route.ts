@@ -17,6 +17,8 @@ export const GET = async (req: Request) => {
     select: {
       board: true,
       turn: true,
+      black: true,
+      white: true,
     },
   });
   return Response.json({ board });

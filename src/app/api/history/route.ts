@@ -8,6 +8,8 @@ export const GET = async () => {
       createdAt: 'desc',
     },
     select: {
+      black: true,
+      white: true,
       id: true,
       createdAt: true,
       updatedAt: true,

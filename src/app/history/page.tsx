@@ -7,6 +7,8 @@ type BoardResponse = {
   boards: BoardType[];
 };
 type BoardType = {
+  black: string;
+  white: string;
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -30,10 +32,11 @@ const HistoryPage = () => {
           <li key={board.id}>
             <div className={styles.game}>
               <p>
-                <strong>ID:</strong>{' '}
-                <a href={`/${board.id}/gameStart`} className={styles.link}>
-                  {board.id}
-                </a>
+                <strong>
+                  <a href={`/${board.id}/gameStart`} className={styles.link}>
+                    {board.black}vs{board.white}
+                  </a>
+                </strong>
               </p>
               <div className={styles.time}>
                 <p>

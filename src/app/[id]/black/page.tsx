@@ -8,6 +8,8 @@ type boardResponse = {
   board: {
     board: number[][];
     turn: number;
+    black: string;
+    white: string;
   };
 };
 
@@ -83,6 +85,8 @@ const Black = () => {
   const [turn, setTurn] = useState<number>(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isPutting, setIsPutting] = useState(false);
+  const [isBlack, setIsBlack] = useState(`blackPlayer`);
+  const [isWhite, setIsWhite] = useState(`whitePlayer`);
 
   const params = useParams();
   const id = params.id as string;
@@ -93,6 +97,8 @@ const Black = () => {
     const data: boardResponse = (await response.json()) as boardResponse;
     setBoard(data.board.board);
     setTurn(data.board.turn);
+    setIsBlack(data.board.black);
+    setIsWhite(data.board.white);
   }, [isPutting, id]);
 
   useEffect(() => {
@@ -165,9 +171,9 @@ const Black = () => {
   values.puttableCell = boardView.flat().filter((num) => num === 3).length;
 
   if (values.whiteCell < values.blackCell) {
-    values.winner = '黒';
+    values.winner = isBlack;
   } else if (values.blackCell < values.whiteCell) {
-    values.winner = '白';
+    values.winner = isWhite;
   } else {
     values.winner = '引き分け';
   }
@@ -203,7 +209,7 @@ const Black = () => {
                 黒の数{values.blackCell} 対 白の数{values.whiteCell}で
               </p>
               <h2>
-                {values.winner === '白' || values.winner === '黒'
+                {values.winner === isWhite || values.winner === isBlack
                   ? `${JSON.stringify(values.winner)}の勝ち!!`
                   : '引き分け'}
               </h2>
@@ -239,7 +245,11 @@ const Black = () => {
         </div>
         <div className={styles.infomation}>
           <div className={styles.showInformation}>
-            <p>{turn === 1 ? '黒のターン' : '相手のターン'}</p>
+            <p>
+              {turn === 1
+                ? `${JSON.stringify(isBlack)}のターン`
+                : `${JSON.stringify(isWhite)}のターン`}
+            </p>{' '}
             <p>黒：{values.blackCell}枚</p>
             <p>白：{values.whiteCell}枚</p>
           </div>
