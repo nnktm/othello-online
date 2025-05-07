@@ -4,8 +4,9 @@ const Home = () => {
     <div className={styles.container}>
       <h1 className={styles.title}>オセロをプレイする！！！！！</h1>
       <div className={styles.button}>
-        <a href="/history">過去に作成したゲーム一覧を見る</a>
         <a href="/gameCreate">新しくゲームを作成してプレイする</a>
+        <a href="/gameRecruitment">現在相手募集中のゲームを探す</a>
+        <a href="/history">観戦する（ゲーム一覧を見る）</a>
       </div>
     </div>
   );

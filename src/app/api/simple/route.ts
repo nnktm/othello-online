@@ -30,10 +30,11 @@ export const PUT = async (req: Request) => {
 
 export const POST = async (req: Request) => {
   const prisma = new PrismaClient();
-  const { blackPlayer, whitePlayer } = (await req.json()) as {
+  const { blackPlayer } = (await req.json()) as {
     blackPlayer: string;
-    whitePlayer: string;
   };
+
+  const whitePlayer = '';
   const initialBoard = [
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
