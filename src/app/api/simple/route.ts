@@ -51,6 +51,7 @@ export const POST = async (req: Request) => {
       white: whitePlayer,
       board: initialBoard,
       turn: 1,
+      end: false,
     },
   });
   return Response.json({ id: newBoard.id });

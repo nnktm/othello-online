@@ -82,11 +82,6 @@ const Watch = () => {
     return () => clearInterval(interval);
   }, [handleFetchBoard]);
 
-  const closeModal = () => {
-    setBoard(initialBoard);
-    setTurn(1);
-  };
-
   const boardView = structuredClone(board);
   const values = {
     blackCell: 0,
@@ -148,9 +143,9 @@ const Watch = () => {
                   ? `${JSON.stringify(values.winner)}の勝ち!!`
                   : '引き分け'}
               </h2>
-              <span className={styles.modalClose} onClick={closeModal}>
+              <a href="/" className={styles.modalClose}>
                 閉じる
-              </span>
+              </a>
             </div>
           </div>
         ) : null}

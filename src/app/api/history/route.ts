@@ -13,6 +13,7 @@ export const GET = async () => {
       id: true,
       createdAt: true,
       updatedAt: true,
+      end: true,
     },
   });
 

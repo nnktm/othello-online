@@ -6,7 +6,7 @@ const Home = () => {
       <div className={styles.button}>
         <a href="/gameCreate">新しくゲームを作成してプレイする</a>
         <a href="/gameRecruitment">現在相手募集中のゲームを探す</a>
-        <a href="/history">観戦する（ゲーム一覧を見る）</a>
+        <a href="/history">観戦可能なゲームを探す</a>
       </div>
     </div>
   );

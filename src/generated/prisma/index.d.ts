@@ -894,6 +894,7 @@ export namespace Prisma {
     black: string | null
     white: string | null
     turn: number | null
+    end: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -903,6 +904,7 @@ export namespace Prisma {
     black: string | null
     white: string | null
     turn: number | null
+    end: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -913,6 +915,7 @@ export namespace Prisma {
     white: number
     turn: number
     board: number
+    end: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -932,6 +935,7 @@ export namespace Prisma {
     black?: true
     white?: true
     turn?: true
+    end?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -941,6 +945,7 @@ export namespace Prisma {
     black?: true
     white?: true
     turn?: true
+    end?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -951,6 +956,7 @@ export namespace Prisma {
     white?: true
     turn?: true
     board?: true
+    end?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1048,6 +1054,7 @@ export namespace Prisma {
     white: string
     turn: number
     board: JsonValue
+    end: boolean
     createdAt: Date
     updatedAt: Date
     _count: BoardCountAggregateOutputType | null
@@ -1077,6 +1084,7 @@ export namespace Prisma {
     white?: boolean
     turn?: boolean
     board?: boolean
+    end?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["board"]>
@@ -1087,6 +1095,7 @@ export namespace Prisma {
     white?: boolean
     turn?: boolean
     board?: boolean
+    end?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["board"]>
@@ -1097,6 +1106,7 @@ export namespace Prisma {
     white?: boolean
     turn?: boolean
     board?: boolean
+    end?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["board"]>
@@ -1107,11 +1117,12 @@ export namespace Prisma {
     white?: boolean
     turn?: boolean
     board?: boolean
+    end?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type BoardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "black" | "white" | "turn" | "board" | "createdAt" | "updatedAt", ExtArgs["result"]["board"]>
+  export type BoardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "black" | "white" | "turn" | "board" | "end" | "createdAt" | "updatedAt", ExtArgs["result"]["board"]>
 
   export type $BoardPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Board"
@@ -1122,6 +1133,7 @@ export namespace Prisma {
       white: string
       turn: number
       board: Prisma.JsonValue
+      end: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["board"]>
@@ -1552,6 +1564,7 @@ export namespace Prisma {
     readonly white: FieldRef<"Board", 'String'>
     readonly turn: FieldRef<"Board", 'Int'>
     readonly board: FieldRef<"Board", 'Json'>
+    readonly end: FieldRef<"Board", 'Boolean'>
     readonly createdAt: FieldRef<"Board", 'DateTime'>
     readonly updatedAt: FieldRef<"Board", 'DateTime'>
   }
@@ -1940,6 +1953,7 @@ export namespace Prisma {
     white: 'white',
     turn: 'turn',
     board: 'board',
+    end: 'end',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -2027,6 +2041,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -2066,6 +2087,7 @@ export namespace Prisma {
     white?: StringFilter<"Board"> | string
     turn?: IntFilter<"Board"> | number
     board?: JsonFilter<"Board">
+    end?: BoolFilter<"Board"> | boolean
     createdAt?: DateTimeFilter<"Board"> | Date | string
     updatedAt?: DateTimeFilter<"Board"> | Date | string
   }
@@ -2076,6 +2098,7 @@ export namespace Prisma {
     white?: SortOrder
     turn?: SortOrder
     board?: SortOrder
+    end?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2089,6 +2112,7 @@ export namespace Prisma {
     white?: StringFilter<"Board"> | string
     turn?: IntFilter<"Board"> | number
     board?: JsonFilter<"Board">
+    end?: BoolFilter<"Board"> | boolean
     createdAt?: DateTimeFilter<"Board"> | Date | string
     updatedAt?: DateTimeFilter<"Board"> | Date | string
   }, "id">
@@ -2099,6 +2123,7 @@ export namespace Prisma {
     white?: SortOrder
     turn?: SortOrder
     board?: SortOrder
+    end?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: BoardCountOrderByAggregateInput
@@ -2117,6 +2142,7 @@ export namespace Prisma {
     white?: StringWithAggregatesFilter<"Board"> | string
     turn?: IntWithAggregatesFilter<"Board"> | number
     board?: JsonWithAggregatesFilter<"Board">
+    end?: BoolWithAggregatesFilter<"Board"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Board"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Board"> | Date | string
   }
@@ -2127,6 +2153,7 @@ export namespace Prisma {
     white: string
     turn: number
     board: JsonNullValueInput | InputJsonValue
+    end: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2137,6 +2164,7 @@ export namespace Prisma {
     white: string
     turn: number
     board: JsonNullValueInput | InputJsonValue
+    end: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2147,6 +2175,7 @@ export namespace Prisma {
     white?: StringFieldUpdateOperationsInput | string
     turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
+    end?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2157,6 +2186,7 @@ export namespace Prisma {
     white?: StringFieldUpdateOperationsInput | string
     turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
+    end?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2167,6 +2197,7 @@ export namespace Prisma {
     white: string
     turn: number
     board: JsonNullValueInput | InputJsonValue
+    end: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2177,6 +2208,7 @@ export namespace Prisma {
     white?: StringFieldUpdateOperationsInput | string
     turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
+    end?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2187,6 +2219,7 @@ export namespace Prisma {
     white?: StringFieldUpdateOperationsInput | string
     turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
+    end?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2240,6 +2273,11 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -2257,6 +2295,7 @@ export namespace Prisma {
     white?: SortOrder
     turn?: SortOrder
     board?: SortOrder
+    end?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2270,6 +2309,7 @@ export namespace Prisma {
     black?: SortOrder
     white?: SortOrder
     turn?: SortOrder
+    end?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2279,6 +2319,7 @@ export namespace Prisma {
     black?: SortOrder
     white?: SortOrder
     turn?: SortOrder
+    end?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2347,6 +2388,14 @@ export namespace Prisma {
     _max?: NestedJsonFilter<$PrismaModel>
   }
 
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -2371,6 +2420,10 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -2400,6 +2453,11 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -2478,6 +2536,14 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {

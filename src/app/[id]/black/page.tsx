@@ -101,6 +101,15 @@ const Black = () => {
     setIsWhite(data.board.white);
   }, [isPutting, id]);
 
+  const handleEndUpdate = useCallback(async () => {
+    setIsLoading(true);
+    await fetch(`/api/end?id=${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ id, end: true }),
+    });
+    setIsLoading(false);
+  }, [id]);
+
   useEffect(() => {
     if (isPutting) return;
     const interval = setInterval(() => {
@@ -120,10 +129,6 @@ const Black = () => {
       body: JSON.stringify({ id, board: updatedBoard, turn: updatedTurn }),
     });
     setIsLoading(false);
-  };
-  const closeModal = () => {
-    setBoard(initialBoard);
-    setTurn(1);
   };
 
   const boardReset = async () => {
@@ -196,6 +201,12 @@ const Black = () => {
     values.whiteCell + values.blackCell === 64 ||
     values.isSkip === true;
 
+  useEffect(() => {
+    if (isEnd) {
+      void handleEndUpdate();
+    }
+  }, [isEnd, handleEndUpdate]);
+
   return (
     <>
       <div className={styles.container}>
@@ -213,9 +224,9 @@ const Black = () => {
                   ? `${JSON.stringify(values.winner)}の勝ち!!`
                   : '引き分け'}
               </h2>
-              <span className={styles.modalClose} onClick={closeModal}>
+              <a href="/" className={styles.modalClose}>
                 閉じる
-              </span>
+              </a>
             </div>
           </div>
         ) : null}
