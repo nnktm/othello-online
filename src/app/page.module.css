@@ -27,6 +27,10 @@
   border: 1px solid #80898b;
 }
 
+.cell:hover {
+  background-color: #98c0c9;
+}
+
 .stone {
   border-radius: 50%;
 }
@@ -130,19 +134,20 @@
 
 @media (width <= 768px) {
   .container {
+    display: flex;
     flex-direction: column;
     align-items: center;
     padding: 1rem;
   }
 
   .board {
-    width: 90%;
+    width: 40%;
   }
 
   .infomation {
     align-items: center;
-    width: 100%;
-    max-width: 100%;
+    width: 60%;
+    max-width: 60%;
     margin-top: 1rem;
     margin-left: 0;
   }

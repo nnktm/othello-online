@@ -85,8 +85,8 @@ const Black = () => {
   const [turn, setTurn] = useState<number>(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isPutting, setIsPutting] = useState(false);
-  const [isBlack, setIsBlack] = useState(`blackPlayer`);
-  const [isWhite, setIsWhite] = useState(`whitePlayer`);
+  const [isBlack, setIsBlack] = useState(``);
+  const [isWhite, setIsWhite] = useState(``);
 
   const params = useParams();
   const id = params.id as string;
@@ -210,6 +210,14 @@ const Black = () => {
   return (
     <>
       <div className={styles.container}>
+        {isWhite === `` ? (
+          <div className={styles.modal}>
+            <div className={styles.modalContent}>
+              <h1>プレイヤーを待っています</h1>
+              <p>プレイヤーの参加までしばらくお待ち下さい</p>
+            </div>
+          </div>
+        ) : null}
         {isEnd ? (
           <div className={styles.modal}>
             <div className={styles.modalContent}>
