@@ -127,6 +127,9 @@ exports.Prisma.BoardScalarFieldEnum = {
   turn: 'turn',
   board: 'board',
   end: 'end',
+  result: 'result',
+  resultBlack: 'resultBlack',
+  resultWhite: 'resultWhite',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

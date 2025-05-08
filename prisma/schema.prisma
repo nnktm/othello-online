@@ -21,6 +21,9 @@ model Board {
   turn      Int
   board     Json
   end       Boolean
+  result  String
+  resultBlack Int
+  resultWhite Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

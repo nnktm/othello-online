@@ -1,11 +1,17 @@
 import { PrismaClient } from '../../../generated/prisma';
 export const PUT = async (req: Request) => {
   const prisma = new PrismaClient();
-  const { id, end } = (await req.json()) as { id: string; end: boolean };
+  const { id, end, resultBlack, resultWhite, result } = (await req.json()) as {
+    id: string;
+    end: boolean;
+    resultBlack: number;
+    resultWhite: number;
+    result: string;
+  };
 
   const newBoard = await prisma.board.update({
     where: { id },
-    data: { end },
+    data: { end, resultBlack, resultWhite, result },
   });
 
   return Response.json({ newBoard });

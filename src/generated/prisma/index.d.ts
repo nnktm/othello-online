@@ -883,10 +883,14 @@ export namespace Prisma {
 
   export type BoardAvgAggregateOutputType = {
     turn: number | null
+    resultBlack: number | null
+    resultWhite: number | null
   }
 
   export type BoardSumAggregateOutputType = {
     turn: number | null
+    resultBlack: number | null
+    resultWhite: number | null
   }
 
   export type BoardMinAggregateOutputType = {
@@ -895,6 +899,9 @@ export namespace Prisma {
     white: string | null
     turn: number | null
     end: boolean | null
+    result: string | null
+    resultBlack: number | null
+    resultWhite: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -905,6 +912,9 @@ export namespace Prisma {
     white: string | null
     turn: number | null
     end: boolean | null
+    result: string | null
+    resultBlack: number | null
+    resultWhite: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -916,6 +926,9 @@ export namespace Prisma {
     turn: number
     board: number
     end: number
+    result: number
+    resultBlack: number
+    resultWhite: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -924,10 +937,14 @@ export namespace Prisma {
 
   export type BoardAvgAggregateInputType = {
     turn?: true
+    resultBlack?: true
+    resultWhite?: true
   }
 
   export type BoardSumAggregateInputType = {
     turn?: true
+    resultBlack?: true
+    resultWhite?: true
   }
 
   export type BoardMinAggregateInputType = {
@@ -936,6 +953,9 @@ export namespace Prisma {
     white?: true
     turn?: true
     end?: true
+    result?: true
+    resultBlack?: true
+    resultWhite?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -946,6 +966,9 @@ export namespace Prisma {
     white?: true
     turn?: true
     end?: true
+    result?: true
+    resultBlack?: true
+    resultWhite?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -957,6 +980,9 @@ export namespace Prisma {
     turn?: true
     board?: true
     end?: true
+    result?: true
+    resultBlack?: true
+    resultWhite?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1055,6 +1081,9 @@ export namespace Prisma {
     turn: number
     board: JsonValue
     end: boolean
+    result: string
+    resultBlack: number
+    resultWhite: number
     createdAt: Date
     updatedAt: Date
     _count: BoardCountAggregateOutputType | null
@@ -1085,6 +1114,9 @@ export namespace Prisma {
     turn?: boolean
     board?: boolean
     end?: boolean
+    result?: boolean
+    resultBlack?: boolean
+    resultWhite?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["board"]>
@@ -1096,6 +1128,9 @@ export namespace Prisma {
     turn?: boolean
     board?: boolean
     end?: boolean
+    result?: boolean
+    resultBlack?: boolean
+    resultWhite?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["board"]>
@@ -1107,6 +1142,9 @@ export namespace Prisma {
     turn?: boolean
     board?: boolean
     end?: boolean
+    result?: boolean
+    resultBlack?: boolean
+    resultWhite?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["board"]>
@@ -1118,11 +1156,14 @@ export namespace Prisma {
     turn?: boolean
     board?: boolean
     end?: boolean
+    result?: boolean
+    resultBlack?: boolean
+    resultWhite?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type BoardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "black" | "white" | "turn" | "board" | "end" | "createdAt" | "updatedAt", ExtArgs["result"]["board"]>
+  export type BoardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "black" | "white" | "turn" | "board" | "end" | "result" | "resultBlack" | "resultWhite" | "createdAt" | "updatedAt", ExtArgs["result"]["board"]>
 
   export type $BoardPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Board"
@@ -1134,6 +1175,9 @@ export namespace Prisma {
       turn: number
       board: Prisma.JsonValue
       end: boolean
+      result: string
+      resultBlack: number
+      resultWhite: number
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["board"]>
@@ -1565,6 +1609,9 @@ export namespace Prisma {
     readonly turn: FieldRef<"Board", 'Int'>
     readonly board: FieldRef<"Board", 'Json'>
     readonly end: FieldRef<"Board", 'Boolean'>
+    readonly result: FieldRef<"Board", 'String'>
+    readonly resultBlack: FieldRef<"Board", 'Int'>
+    readonly resultWhite: FieldRef<"Board", 'Int'>
     readonly createdAt: FieldRef<"Board", 'DateTime'>
     readonly updatedAt: FieldRef<"Board", 'DateTime'>
   }
@@ -1954,6 +2001,9 @@ export namespace Prisma {
     turn: 'turn',
     board: 'board',
     end: 'end',
+    result: 'result',
+    resultBlack: 'resultBlack',
+    resultWhite: 'resultWhite',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -2088,6 +2138,9 @@ export namespace Prisma {
     turn?: IntFilter<"Board"> | number
     board?: JsonFilter<"Board">
     end?: BoolFilter<"Board"> | boolean
+    result?: StringFilter<"Board"> | string
+    resultBlack?: IntFilter<"Board"> | number
+    resultWhite?: IntFilter<"Board"> | number
     createdAt?: DateTimeFilter<"Board"> | Date | string
     updatedAt?: DateTimeFilter<"Board"> | Date | string
   }
@@ -2099,6 +2152,9 @@ export namespace Prisma {
     turn?: SortOrder
     board?: SortOrder
     end?: SortOrder
+    result?: SortOrder
+    resultBlack?: SortOrder
+    resultWhite?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2113,6 +2169,9 @@ export namespace Prisma {
     turn?: IntFilter<"Board"> | number
     board?: JsonFilter<"Board">
     end?: BoolFilter<"Board"> | boolean
+    result?: StringFilter<"Board"> | string
+    resultBlack?: IntFilter<"Board"> | number
+    resultWhite?: IntFilter<"Board"> | number
     createdAt?: DateTimeFilter<"Board"> | Date | string
     updatedAt?: DateTimeFilter<"Board"> | Date | string
   }, "id">
@@ -2124,6 +2183,9 @@ export namespace Prisma {
     turn?: SortOrder
     board?: SortOrder
     end?: SortOrder
+    result?: SortOrder
+    resultBlack?: SortOrder
+    resultWhite?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: BoardCountOrderByAggregateInput
@@ -2143,6 +2205,9 @@ export namespace Prisma {
     turn?: IntWithAggregatesFilter<"Board"> | number
     board?: JsonWithAggregatesFilter<"Board">
     end?: BoolWithAggregatesFilter<"Board"> | boolean
+    result?: StringWithAggregatesFilter<"Board"> | string
+    resultBlack?: IntWithAggregatesFilter<"Board"> | number
+    resultWhite?: IntWithAggregatesFilter<"Board"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Board"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Board"> | Date | string
   }
@@ -2154,6 +2219,9 @@ export namespace Prisma {
     turn: number
     board: JsonNullValueInput | InputJsonValue
     end: boolean
+    result: string
+    resultBlack: number
+    resultWhite: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2165,6 +2233,9 @@ export namespace Prisma {
     turn: number
     board: JsonNullValueInput | InputJsonValue
     end: boolean
+    result: string
+    resultBlack: number
+    resultWhite: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2176,6 +2247,9 @@ export namespace Prisma {
     turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
     end?: BoolFieldUpdateOperationsInput | boolean
+    result?: StringFieldUpdateOperationsInput | string
+    resultBlack?: IntFieldUpdateOperationsInput | number
+    resultWhite?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2187,6 +2261,9 @@ export namespace Prisma {
     turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
     end?: BoolFieldUpdateOperationsInput | boolean
+    result?: StringFieldUpdateOperationsInput | string
+    resultBlack?: IntFieldUpdateOperationsInput | number
+    resultWhite?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2198,6 +2275,9 @@ export namespace Prisma {
     turn: number
     board: JsonNullValueInput | InputJsonValue
     end: boolean
+    result: string
+    resultBlack: number
+    resultWhite: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2209,6 +2289,9 @@ export namespace Prisma {
     turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
     end?: BoolFieldUpdateOperationsInput | boolean
+    result?: StringFieldUpdateOperationsInput | string
+    resultBlack?: IntFieldUpdateOperationsInput | number
+    resultWhite?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2220,6 +2303,9 @@ export namespace Prisma {
     turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
     end?: BoolFieldUpdateOperationsInput | boolean
+    result?: StringFieldUpdateOperationsInput | string
+    resultBlack?: IntFieldUpdateOperationsInput | number
+    resultWhite?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2296,12 +2382,17 @@ export namespace Prisma {
     turn?: SortOrder
     board?: SortOrder
     end?: SortOrder
+    result?: SortOrder
+    resultBlack?: SortOrder
+    resultWhite?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type BoardAvgOrderByAggregateInput = {
     turn?: SortOrder
+    resultBlack?: SortOrder
+    resultWhite?: SortOrder
   }
 
   export type BoardMaxOrderByAggregateInput = {
@@ -2310,6 +2401,9 @@ export namespace Prisma {
     white?: SortOrder
     turn?: SortOrder
     end?: SortOrder
+    result?: SortOrder
+    resultBlack?: SortOrder
+    resultWhite?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2320,12 +2414,17 @@ export namespace Prisma {
     white?: SortOrder
     turn?: SortOrder
     end?: SortOrder
+    result?: SortOrder
+    resultBlack?: SortOrder
+    resultWhite?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type BoardSumOrderByAggregateInput = {
     turn?: SortOrder
+    resultBlack?: SortOrder
+    resultWhite?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {

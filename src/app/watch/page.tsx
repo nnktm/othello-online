@@ -31,27 +31,30 @@ const HistoryPage = () => {
       <ul className={styles.body}>
         {boards.map((board) => {
           if (board.end === false) {
-            return (
-              <li key={board.id}>
-                <div className={styles.game}>
-                  <p>
-                    <strong>
-                      <a href={`/${board.id}/watch`} className={styles.link}>
-                        {board.black} vs {board.white}
-                      </a>
-                    </strong>
-                  </p>
-                  <div className={styles.time}>
+            if (board.white !== '') {
+              return (
+                <li key={board.id}>
+                  <div className={styles.game}>
                     <p>
-                      <strong>作成日時:</strong> {new Date(board.createdAt).toLocaleString()}
+                      <strong>
+                        <a href={`/${board.id}/watch`} className={styles.link}>
+                          {board.black} vs {board.white}
+                        </a>
+                      </strong>
                     </p>
-                    <p>
-                      <strong>最終更新日時:</strong> {new Date(board.updatedAt).toLocaleString()}
-                    </p>
+                    <div className={styles.time}>
+                      <p>
+                        <strong>作成日時:</strong> {new Date(board.createdAt).toLocaleString()}
+                      </p>
+                      <p>
+                        <strong>最終更新日時:</strong> {new Date(board.updatedAt).toLocaleString()}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </li>
-            );
+                </li>
+              );
+            }
+            return null;
           }
           return null;
         })}

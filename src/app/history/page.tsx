@@ -13,6 +13,9 @@ type BoardType = {
   createdAt: string;
   updatedAt: string;
   end: boolean;
+  resultBlack: number;
+  resultWhite: number;
+  result: string;
 };
 
 const HistoryPage = () => {
@@ -35,9 +38,10 @@ const HistoryPage = () => {
               <li key={board.id}>
                 <div className={styles.game}>
                   <p>
-                    <strong>
-                      {board.black} vs {board.white}
-                    </strong>
+                    {board.black}:{board.resultBlack}枚{board.white}:{board.resultWhite}枚
+                  </p>
+                  <p>
+                    <strong>{board.result}の勝利</strong>
                   </p>
                   <div className={styles.time}>
                     <p>

@@ -14,6 +14,9 @@ export const GET = async () => {
       createdAt: true,
       updatedAt: true,
       end: true,
+      resultBlack: true,
+      resultWhite: true,
+      result: true,
     },
   });
 

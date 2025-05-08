@@ -101,15 +101,6 @@ const Black = () => {
     setIsWhite(data.board.white);
   }, [isPutting, id]);
 
-  const handleEndUpdate = useCallback(async () => {
-    setIsLoading(true);
-    await fetch(`/api/end?id=${id}`, {
-      method: 'PUT',
-      body: JSON.stringify({ id, end: true }),
-    });
-    setIsLoading(false);
-  }, [id]);
-
   useEffect(() => {
     if (isPutting) return;
     const interval = setInterval(() => {
@@ -200,6 +191,21 @@ const Black = () => {
     values.blackCell === 0 ||
     values.whiteCell + values.blackCell === 64 ||
     values.isSkip === true;
+
+  const handleEndUpdate = useCallback(async () => {
+    setIsLoading(true);
+    await fetch(`/api/end?id=${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        id,
+        end: true,
+        resultBlack: values.blackCell,
+        resultWhite: values.whiteCell,
+        result: values.winner,
+      }),
+    });
+    setIsLoading(false);
+  }, [id, values.blackCell, values.whiteCell, values.winner]);
 
   useEffect(() => {
     if (isEnd) {
