@@ -27,16 +27,18 @@ const HistoryPage = () => {
   };
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>過去のゲーム一覧</h1>
+      <h1 className={styles.title}>観戦可能なゲーム一覧</h1>
       <ul className={styles.body}>
         {boards.map((board) => {
-          if (board.end === true) {
+          if (board.end === false) {
             return (
               <li key={board.id}>
                 <div className={styles.game}>
                   <p>
                     <strong>
-                      {board.black} vs {board.white}
+                      <a href={`/${board.id}/watch`} className={styles.link}>
+                        {board.black} vs {board.white}
+                      </a>
                     </strong>
                   </p>
                   <div className={styles.time}>
