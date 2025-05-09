@@ -41,7 +41,11 @@ const HistoryPage = () => {
                     {board.black}:{board.resultBlack}枚{board.white}:{board.resultWhite}枚
                   </p>
                   <p>
-                    <strong>{board.result}の勝利</strong>
+                    <strong>
+                      {board.resultBlack === board.resultWhite
+                        ? '引き分け'
+                        : `${board.result}の勝利`}
+                    </strong>
                   </p>
                   <div className={styles.time}>
                     <p>
