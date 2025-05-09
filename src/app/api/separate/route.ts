@@ -35,3 +35,10 @@ export const PUT = async (req: Request) => {
 
   return Response.json({ newBoard });
 };
+
+export const DELETE = async (req: Request) => {
+  const prisma = new PrismaClient();
+  const { id } = (await req.json()) as { id: string };
+  await prisma.board.delete({ where: { id } });
+  return Response.json({ message: 'Board deleted' });
+};
