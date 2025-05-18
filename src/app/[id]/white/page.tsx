@@ -102,12 +102,12 @@ const White = () => {
   }, [isPutting, id]);
 
   useEffect(() => {
-    if (isPutting) return;
+    if (isPutting || isLoading) return;
     const interval = setInterval(() => {
       void handleFetchBoard();
-    }, 1000);
+    }, 2000);
     return () => clearInterval(interval);
-  }, [isPutting, handleFetchBoard]);
+  }, [isPutting, handleFetchBoard, isLoading]);
 
   const handleUpdateBoard = async (updatedBoard: number[][], updatedTurn: number) => {
     setIsLoading(true);
@@ -115,7 +115,9 @@ const White = () => {
       method: 'PUT',
       body: JSON.stringify({ id, board: updatedBoard, turn: updatedTurn }),
     });
+    await handleFetchBoard();
     setIsLoading(false);
+    setIsPutting(false);
   };
 
   const boardReset = async () => {
@@ -132,18 +134,15 @@ const White = () => {
     if (board[y][x] !== 0 || checkPutable(x, y, board, turn) === false) {
       return;
     }
-    try {
-      setIsPutting(true);
-      const newBoard = structuredClone(board);
-      if (turnCell(x, y, newBoard, turn)) {
-        newBoard[y][x] = turn;
-      }
+
+    setIsPutting(true);
+    const newBoard = structuredClone(board);
+    if (turnCell(x, y, newBoard, turn)) {
+      newBoard[y][x] = turn;
       const newTurn = 3 - turn;
       setBoard(newBoard);
       setTurn(newTurn);
       await handleUpdateBoard(newBoard, newTurn);
-    } finally {
-      setIsPutting(false);
     }
   };
 

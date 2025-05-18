@@ -78,7 +78,7 @@ const Watch = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       void handleFetchBoard();
-    }, 1000);
+    }, 2000);
     return () => clearInterval(interval);
   }, [handleFetchBoard]);
 

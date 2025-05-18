@@ -92,22 +92,21 @@ const Black = () => {
   const id = params.id as string;
 
   const handleFetchBoard = useCallback(async () => {
-    if (isPutting) return;
     const response = await fetch(`/api/separate?id=${id}`);
     const data: boardResponse = (await response.json()) as boardResponse;
     setBoard(data.board.board);
     setTurn(data.board.turn);
     setIsBlack(data.board.black);
     setIsWhite(data.board.white);
-  }, [isPutting, id]);
+  }, [id]);
 
   useEffect(() => {
-    if (isPutting) return;
+    if (isPutting || isLoading) return;
     const interval = setInterval(() => {
       void handleFetchBoard();
-    }, 1000);
+    }, 2000);
     return () => clearInterval(interval);
-  }, [handleFetchBoard, isPutting]);
+  }, [handleFetchBoard, isPutting, isLoading]);
 
   const handleDeleteBoard = async () => {
     await fetch(`/api/separate?id=${id}`, {
@@ -126,7 +125,9 @@ const Black = () => {
       method: 'PUT',
       body: JSON.stringify({ id, board: updatedBoard, turn: updatedTurn }),
     });
+    await handleFetchBoard();
     setIsLoading(false);
+    setIsPutting(false);
   };
 
   const boardReset = async () => {
@@ -143,19 +144,15 @@ const Black = () => {
     if (board[y][x] !== 0 || checkPutable(x, y, board, turn) === false) {
       return;
     }
-    try {
-      setIsPutting(true);
-      const newBoard = structuredClone(board);
-      if (turnCell(x, y, newBoard, turn)) {
-        newBoard[y][x] = turn;
-      }
-      const newTurn = 3 - turn;
-      setBoard(newBoard);
-      setTurn(newTurn);
-      await handleUpdateBoard(newBoard, newTurn);
-    } finally {
-      setIsPutting(false);
+    setIsPutting(true);
+    const newBoard = structuredClone(board);
+    if (turnCell(x, y, newBoard, turn)) {
+      newBoard[y][x] = turn;
     }
+    const newTurn = 3 - turn;
+    setBoard(newBoard);
+    setTurn(newTurn);
+    await handleUpdateBoard(newBoard, newTurn);
   };
 
   const boardView = structuredClone(board);
