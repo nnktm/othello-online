@@ -105,7 +105,7 @@ const White = () => {
     if (isPutting) return;
     const interval = setInterval(() => {
       void handleFetchBoard();
-    }, 500);
+    }, 1000);
     return () => clearInterval(interval);
   }, [isPutting, handleFetchBoard]);
 
@@ -127,21 +127,24 @@ const White = () => {
   };
 
   const handleOnClick = async (x: number, y: number) => {
-    if (isLoading) return;
+    if (isLoading || isPutting) return;
     if (turn === 1) return;
     if (board[y][x] !== 0 || checkPutable(x, y, board, turn) === false) {
       return;
     }
-    setIsPutting(true);
-    const newBoard = structuredClone(board);
-    if (turnCell(x, y, newBoard, turn)) {
-      newBoard[y][x] = turn;
+    try {
+      setIsPutting(true);
+      const newBoard = structuredClone(board);
+      if (turnCell(x, y, newBoard, turn)) {
+        newBoard[y][x] = turn;
+      }
+      const newTurn = 3 - turn;
+      setBoard(newBoard);
+      setTurn(newTurn);
+      await handleUpdateBoard(newBoard, newTurn);
+    } finally {
+      setIsPutting(false);
     }
-    const newTurn = 3 - turn;
-    setBoard(newBoard);
-    setTurn(newTurn);
-    await handleUpdateBoard(newBoard, newTurn);
-    setIsPutting(false);
   };
 
   const boardView = structuredClone(board);
