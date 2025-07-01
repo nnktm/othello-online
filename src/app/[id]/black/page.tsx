@@ -2,38 +2,9 @@
 
 import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
+import type { BoardResponse } from '../../../constants';
+import { DIRECTIONS, INITIAL_BOARD } from '../../../constants';
 import styles from '../../page.module.css';
-
-type boardResponse = {
-  board: {
-    board: number[][];
-    turn: number;
-    black: string;
-    white: string;
-  };
-};
-
-const initialBoard = [
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 1, 2, 0, 0, 0],
-  [0, 0, 0, 2, 1, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-];
-
-const DIRECTIONS = [
-  [0, -1],
-  [1, -1],
-  [1, 0],
-  [1, 1],
-  [0, 1],
-  [-1, 1],
-  [-1, 0],
-  [-1, -1],
-];
 //[cy][cx]に石を置くことが可能かどうか判断し可能な場合trueを返す
 const checkPutable = (cx: number, cy: number, board: number[][], turn: number) => {
   if (board[cy][cx] === 1 || board[cy][cx] === 2) {
@@ -81,7 +52,7 @@ const turnCell = (cx: number, cy: number, board: number[][], turn: number) => {
 };
 
 const Black = () => {
-  const [board, setBoard] = useState<number[][]>(initialBoard);
+  const [board, setBoard] = useState<number[][]>(INITIAL_BOARD);
   const [turn, setTurn] = useState<number>(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isPutting, setIsPutting] = useState(false);
@@ -93,7 +64,7 @@ const Black = () => {
 
   const handleFetchBoard = useCallback(async () => {
     const response = await fetch(`/api/separate?id=${id}`);
-    const data: boardResponse = (await response.json()) as boardResponse;
+    const data: BoardResponse = (await response.json()) as BoardResponse;
     setBoard(data.board.board);
     setTurn(data.board.turn);
     setIsBlack(data.board.black);
@@ -104,7 +75,7 @@ const Black = () => {
     if (isPutting || isLoading) return;
     const interval = setInterval(() => {
       void handleFetchBoard();
-    }, 2000);
+    }, 500);
     return () => clearInterval(interval);
   }, [handleFetchBoard, isPutting, isLoading]);
 
@@ -133,7 +104,7 @@ const Black = () => {
   const boardReset = async () => {
     await fetch(`/api/separate?id=${id}`, {
       method: 'PUT',
-      body: JSON.stringify({ id, board: initialBoard, turn: 1 }),
+      body: JSON.stringify({ id, board: INITIAL_BOARD, turn: 1 }),
     });
     void handleFetchBoard();
   };

@@ -2,38 +2,10 @@
 
 import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
+import type { BoardResponse } from '../../../constants';
+import { DIRECTIONS, INITIAL_BOARD } from '../../../constants';
 import styles from '../../page.module.css';
 
-type BoardResponse = {
-  board: {
-    board: number[][];
-    turn: number;
-    black: string;
-    white: string;
-  };
-};
-
-const initialBoard = [
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 1, 2, 0, 0, 0],
-  [0, 0, 0, 2, 1, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-];
-
-const DIRECTIONS = [
-  [0, -1],
-  [1, -1],
-  [1, 0],
-  [1, 1],
-  [0, 1],
-  [-1, 1],
-  [-1, 0],
-  [-1, -1],
-];
 //[cy][cx]に石を置くことが可能かどうか判断し可能な場合trueを返す
 const checkPutable = (cx: number, cy: number, board: number[][], turn: number) => {
   if (board[cy][cx] === 1 || board[cy][cx] === 2) {
@@ -81,7 +53,7 @@ const turnCell = (cx: number, cy: number, board: number[][], turn: number) => {
 };
 
 const White = () => {
-  const [board, setBoard] = useState(initialBoard);
+  const [board, setBoard] = useState(INITIAL_BOARD);
   const [turn, setTurn] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isPutting, setIsPutting] = useState(false);
@@ -123,7 +95,7 @@ const White = () => {
   const boardReset = async () => {
     await fetch(`/api/separate?id=${id}`, {
       method: 'PUT',
-      body: JSON.stringify({ id, board: initialBoard, turn: 1 }),
+      body: JSON.stringify({ id, board: INITIAL_BOARD, turn: 1 }),
     });
     void handleFetchBoard();
   };
