@@ -1,2 +1,0 @@
-# Prisma 自動生成ファイルを ESLint チェックから除外
-src/generated/prisma/**

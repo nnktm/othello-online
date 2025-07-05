@@ -63,5 +63,8 @@ export default tseslint.config(
       'react-hooks/exhaustive-deps': 'error',
     },
   },
+  {
+    ignores: ['src/generated/prisma/**'],
+  },
   prettierConfig,
 );
