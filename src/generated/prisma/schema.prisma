@@ -16,15 +16,17 @@ datasource db {
 }
 
 model Board {
-  id          String   @id @default(uuid())
-  black       String
-  white       String
-  turn        Int
-  board       Json
-  end         Boolean
-  result      String
-  resultBlack Int
-  resultWhite Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id           String   @id @default(uuid())
+  black        String
+  white        String
+  turn         Int
+  board        Json
+  end          Boolean
+  watch        Boolean  @default(false)
+  preservation Boolean  @default(false)
+  result       String   @default("")
+  resultBlack  Int      @default(0)
+  resultWhite  Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
