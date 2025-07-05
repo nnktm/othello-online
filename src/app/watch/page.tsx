@@ -13,6 +13,7 @@ type BoardType = {
   createdAt: string;
   updatedAt: string;
   end: boolean;
+  watch: boolean;
 };
 
 const HistoryPage = () => {
@@ -30,7 +31,7 @@ const HistoryPage = () => {
       <h1 className={styles.title}>観戦可能なゲーム一覧</h1>
       <ul className={styles.body}>
         {boards.map((board) => {
-          if (board.end === false) {
+          if (board.end === false && board.watch === true) {
             if (board.white !== '') {
               return (
                 <li key={board.id}>

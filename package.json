@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "run-p dev:*",
+    "migrate": "dotenv -e .env -- npx prisma migrate dev",
     "dev:next": "next dev -p 3000",
     "dev:hcm": "hcm 'src/**/*.module.css' -w",
     "hcm": "hcm 'src/**/*.module.css'",
@@ -21,7 +22,7 @@
     "@neondatabase/serverless": "^1.0.0",
     "@prisma/client": "^6.7.0",
     "next": "^15.1.7",
-    "prisma": "^6.7.0",
+    "prisma": "^6.11.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -31,6 +32,7 @@
     "@types/node": "^22.13.1",
     "@types/react": "^18.3.20",
     "@types/react-dom": "^18.3.6",
+    "dotenv-cli": "^8.0.0",
     "eslint": "^9.20.1",
     "eslint-config-flat-gitignore": "^2.0.0",
     "eslint-config-prettier": "^10.0.1",

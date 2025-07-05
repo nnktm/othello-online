@@ -22,9 +22,11 @@ model Board {
   turn      Int
   board     Json
   end       Boolean
-  result  String
-  resultBlack Int
-  resultWhite Int
+  watch     Boolean @default(false)
+  preservation Boolean @default(false)
+  result  String @default("")
+  resultBlack Int @default(0)
+  resultWhite Int @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

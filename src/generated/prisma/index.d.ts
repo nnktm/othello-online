@@ -211,8 +211,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.7.0
-   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+   * Prisma Client JS version: 6.11.0
+   * Query Engine version: 9c30299f5a0ea26a96790e13f796dc6094db3173
    */
   export type PrismaVersion = {
     client: string
@@ -899,6 +899,8 @@ export namespace Prisma {
     white: string | null
     turn: number | null
     end: boolean | null
+    watch: boolean | null
+    preservation: boolean | null
     result: string | null
     resultBlack: number | null
     resultWhite: number | null
@@ -912,6 +914,8 @@ export namespace Prisma {
     white: string | null
     turn: number | null
     end: boolean | null
+    watch: boolean | null
+    preservation: boolean | null
     result: string | null
     resultBlack: number | null
     resultWhite: number | null
@@ -926,6 +930,8 @@ export namespace Prisma {
     turn: number
     board: number
     end: number
+    watch: number
+    preservation: number
     result: number
     resultBlack: number
     resultWhite: number
@@ -953,6 +959,8 @@ export namespace Prisma {
     white?: true
     turn?: true
     end?: true
+    watch?: true
+    preservation?: true
     result?: true
     resultBlack?: true
     resultWhite?: true
@@ -966,6 +974,8 @@ export namespace Prisma {
     white?: true
     turn?: true
     end?: true
+    watch?: true
+    preservation?: true
     result?: true
     resultBlack?: true
     resultWhite?: true
@@ -980,6 +990,8 @@ export namespace Prisma {
     turn?: true
     board?: true
     end?: true
+    watch?: true
+    preservation?: true
     result?: true
     resultBlack?: true
     resultWhite?: true
@@ -1081,6 +1093,8 @@ export namespace Prisma {
     turn: number
     board: JsonValue
     end: boolean
+    watch: boolean
+    preservation: boolean
     result: string
     resultBlack: number
     resultWhite: number
@@ -1114,6 +1128,8 @@ export namespace Prisma {
     turn?: boolean
     board?: boolean
     end?: boolean
+    watch?: boolean
+    preservation?: boolean
     result?: boolean
     resultBlack?: boolean
     resultWhite?: boolean
@@ -1128,6 +1144,8 @@ export namespace Prisma {
     turn?: boolean
     board?: boolean
     end?: boolean
+    watch?: boolean
+    preservation?: boolean
     result?: boolean
     resultBlack?: boolean
     resultWhite?: boolean
@@ -1142,6 +1160,8 @@ export namespace Prisma {
     turn?: boolean
     board?: boolean
     end?: boolean
+    watch?: boolean
+    preservation?: boolean
     result?: boolean
     resultBlack?: boolean
     resultWhite?: boolean
@@ -1156,6 +1176,8 @@ export namespace Prisma {
     turn?: boolean
     board?: boolean
     end?: boolean
+    watch?: boolean
+    preservation?: boolean
     result?: boolean
     resultBlack?: boolean
     resultWhite?: boolean
@@ -1163,7 +1185,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type BoardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "black" | "white" | "turn" | "board" | "end" | "result" | "resultBlack" | "resultWhite" | "createdAt" | "updatedAt", ExtArgs["result"]["board"]>
+  export type BoardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "black" | "white" | "turn" | "board" | "end" | "watch" | "preservation" | "result" | "resultBlack" | "resultWhite" | "createdAt" | "updatedAt", ExtArgs["result"]["board"]>
 
   export type $BoardPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Board"
@@ -1175,6 +1197,8 @@ export namespace Prisma {
       turn: number
       board: Prisma.JsonValue
       end: boolean
+      watch: boolean
+      preservation: boolean
       result: string
       resultBlack: number
       resultWhite: number
@@ -1609,6 +1633,8 @@ export namespace Prisma {
     readonly turn: FieldRef<"Board", 'Int'>
     readonly board: FieldRef<"Board", 'Json'>
     readonly end: FieldRef<"Board", 'Boolean'>
+    readonly watch: FieldRef<"Board", 'Boolean'>
+    readonly preservation: FieldRef<"Board", 'Boolean'>
     readonly result: FieldRef<"Board", 'String'>
     readonly resultBlack: FieldRef<"Board", 'Int'>
     readonly resultWhite: FieldRef<"Board", 'Int'>
@@ -2001,6 +2027,8 @@ export namespace Prisma {
     turn: 'turn',
     board: 'board',
     end: 'end',
+    watch: 'watch',
+    preservation: 'preservation',
     result: 'result',
     resultBlack: 'resultBlack',
     resultWhite: 'resultWhite',
@@ -2138,6 +2166,8 @@ export namespace Prisma {
     turn?: IntFilter<"Board"> | number
     board?: JsonFilter<"Board">
     end?: BoolFilter<"Board"> | boolean
+    watch?: BoolFilter<"Board"> | boolean
+    preservation?: BoolFilter<"Board"> | boolean
     result?: StringFilter<"Board"> | string
     resultBlack?: IntFilter<"Board"> | number
     resultWhite?: IntFilter<"Board"> | number
@@ -2152,6 +2182,8 @@ export namespace Prisma {
     turn?: SortOrder
     board?: SortOrder
     end?: SortOrder
+    watch?: SortOrder
+    preservation?: SortOrder
     result?: SortOrder
     resultBlack?: SortOrder
     resultWhite?: SortOrder
@@ -2169,6 +2201,8 @@ export namespace Prisma {
     turn?: IntFilter<"Board"> | number
     board?: JsonFilter<"Board">
     end?: BoolFilter<"Board"> | boolean
+    watch?: BoolFilter<"Board"> | boolean
+    preservation?: BoolFilter<"Board"> | boolean
     result?: StringFilter<"Board"> | string
     resultBlack?: IntFilter<"Board"> | number
     resultWhite?: IntFilter<"Board"> | number
@@ -2183,6 +2217,8 @@ export namespace Prisma {
     turn?: SortOrder
     board?: SortOrder
     end?: SortOrder
+    watch?: SortOrder
+    preservation?: SortOrder
     result?: SortOrder
     resultBlack?: SortOrder
     resultWhite?: SortOrder
@@ -2205,6 +2241,8 @@ export namespace Prisma {
     turn?: IntWithAggregatesFilter<"Board"> | number
     board?: JsonWithAggregatesFilter<"Board">
     end?: BoolWithAggregatesFilter<"Board"> | boolean
+    watch?: BoolWithAggregatesFilter<"Board"> | boolean
+    preservation?: BoolWithAggregatesFilter<"Board"> | boolean
     result?: StringWithAggregatesFilter<"Board"> | string
     resultBlack?: IntWithAggregatesFilter<"Board"> | number
     resultWhite?: IntWithAggregatesFilter<"Board"> | number
@@ -2219,9 +2257,11 @@ export namespace Prisma {
     turn: number
     board: JsonNullValueInput | InputJsonValue
     end: boolean
-    result: string
-    resultBlack: number
-    resultWhite: number
+    watch?: boolean
+    preservation?: boolean
+    result?: string
+    resultBlack?: number
+    resultWhite?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2233,9 +2273,11 @@ export namespace Prisma {
     turn: number
     board: JsonNullValueInput | InputJsonValue
     end: boolean
-    result: string
-    resultBlack: number
-    resultWhite: number
+    watch?: boolean
+    preservation?: boolean
+    result?: string
+    resultBlack?: number
+    resultWhite?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2247,6 +2289,8 @@ export namespace Prisma {
     turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
     end?: BoolFieldUpdateOperationsInput | boolean
+    watch?: BoolFieldUpdateOperationsInput | boolean
+    preservation?: BoolFieldUpdateOperationsInput | boolean
     result?: StringFieldUpdateOperationsInput | string
     resultBlack?: IntFieldUpdateOperationsInput | number
     resultWhite?: IntFieldUpdateOperationsInput | number
@@ -2261,6 +2305,8 @@ export namespace Prisma {
     turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
     end?: BoolFieldUpdateOperationsInput | boolean
+    watch?: BoolFieldUpdateOperationsInput | boolean
+    preservation?: BoolFieldUpdateOperationsInput | boolean
     result?: StringFieldUpdateOperationsInput | string
     resultBlack?: IntFieldUpdateOperationsInput | number
     resultWhite?: IntFieldUpdateOperationsInput | number
@@ -2275,9 +2321,11 @@ export namespace Prisma {
     turn: number
     board: JsonNullValueInput | InputJsonValue
     end: boolean
-    result: string
-    resultBlack: number
-    resultWhite: number
+    watch?: boolean
+    preservation?: boolean
+    result?: string
+    resultBlack?: number
+    resultWhite?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2289,6 +2337,8 @@ export namespace Prisma {
     turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
     end?: BoolFieldUpdateOperationsInput | boolean
+    watch?: BoolFieldUpdateOperationsInput | boolean
+    preservation?: BoolFieldUpdateOperationsInput | boolean
     result?: StringFieldUpdateOperationsInput | string
     resultBlack?: IntFieldUpdateOperationsInput | number
     resultWhite?: IntFieldUpdateOperationsInput | number
@@ -2303,6 +2353,8 @@ export namespace Prisma {
     turn?: IntFieldUpdateOperationsInput | number
     board?: JsonNullValueInput | InputJsonValue
     end?: BoolFieldUpdateOperationsInput | boolean
+    watch?: BoolFieldUpdateOperationsInput | boolean
+    preservation?: BoolFieldUpdateOperationsInput | boolean
     result?: StringFieldUpdateOperationsInput | string
     resultBlack?: IntFieldUpdateOperationsInput | number
     resultWhite?: IntFieldUpdateOperationsInput | number
@@ -2382,6 +2434,8 @@ export namespace Prisma {
     turn?: SortOrder
     board?: SortOrder
     end?: SortOrder
+    watch?: SortOrder
+    preservation?: SortOrder
     result?: SortOrder
     resultBlack?: SortOrder
     resultWhite?: SortOrder
@@ -2401,6 +2455,8 @@ export namespace Prisma {
     white?: SortOrder
     turn?: SortOrder
     end?: SortOrder
+    watch?: SortOrder
+    preservation?: SortOrder
     result?: SortOrder
     resultBlack?: SortOrder
     resultWhite?: SortOrder
@@ -2414,6 +2470,8 @@ export namespace Prisma {
     white?: SortOrder
     turn?: SortOrder
     end?: SortOrder
+    watch?: SortOrder
+    preservation?: SortOrder
     result?: SortOrder
     resultBlack?: SortOrder
     resultWhite?: SortOrder

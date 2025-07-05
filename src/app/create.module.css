@@ -43,6 +43,16 @@
   border-radius: 8px;
 }
 
+.check {
+  display: flex;
+  flex-direction: row;
+}
+
+.toggle {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
 .button {
   padding: 0.75rem 1.5rem;
   font-size: 1.1rem;
@@ -57,6 +67,6 @@
 }
 
 .button:hover {
-  background-color: #1669c1;
+  background-color: #4171a3;
   box-shadow: 0 4px 10px rgb(0 0 0 / 15%);
 }

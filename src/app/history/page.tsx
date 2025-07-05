@@ -13,6 +13,7 @@ type BoardType = {
   createdAt: string;
   updatedAt: string;
   end: boolean;
+  preservation: boolean;
   resultBlack: number;
   resultWhite: number;
   result: string;
@@ -33,7 +34,7 @@ const HistoryPage = () => {
       <h1 className={styles.title}>過去のゲーム一覧</h1>
       <ul className={styles.body}>
         {boards.map((board) => {
-          if (board.end === true) {
+          if (board.end === true && board.preservation === true) {
             return (
               <li key={board.id}>
                 <div className={styles.game}>

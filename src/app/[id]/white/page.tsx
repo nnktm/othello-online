@@ -66,13 +66,11 @@ const White = () => {
   const handleFetchBoard = useCallback(async () => {
     const response = await fetch(`/api/separate?id=${id}`);
     const data: BoardResponse = (await response.json()) as BoardResponse;
-    if (data.board.turn !== turn) {
-      setBoard(data.board.board);
-    }
+    setBoard(data.board.board);
     setTurn(data.board.turn);
     setIsBlack(data.board.black);
     setIsWhite(data.board.white);
-  }, [id, turn]);
+  }, [id]);
 
   useEffect(() => {
     if (isPutting || isLoading) return;

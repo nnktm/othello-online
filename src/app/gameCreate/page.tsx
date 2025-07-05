@@ -6,7 +6,8 @@ type ApiResponse = { id: string };
 
 const GameCreate = () => {
   const [blackPlayer, setBlackPlayer] = useState(``);
-
+  const [watch, setWatch] = useState(false);
+  const [preservation, setPreservation] = useState(false);
   const router = useRouter();
 
   const handleCreateGame = async () => {
@@ -17,11 +18,21 @@ const GameCreate = () => {
       },
       body: JSON.stringify({
         blackPlayer,
+        watch,
+        preservation,
       }),
     });
     const data = (await response.json()) as ApiResponse;
     console.log(data);
     void router.push(`/${data.id}/black`);
+  };
+
+  const handleWatch = () => {
+    setWatch(!watch);
+  };
+
+  const handlePreservation = () => {
+    setPreservation(!preservation);
   };
   return (
     <div className={styles.container}>
@@ -37,6 +48,21 @@ const GameCreate = () => {
             className={styles.textBox}
           />
         </p>
+        <div className={styles.check}>
+          <div className={styles.toggle}>
+            <input type="checkbox" id="watch" checked={watch} onChange={handleWatch} />
+            <label htmlFor="watch">観戦を可能にする</label>
+          </div>
+          <div className={styles.toggle}>
+            <input
+              type="checkbox"
+              id="preservation"
+              checked={preservation}
+              onChange={handlePreservation}
+            />
+            <label htmlFor="preservation">結果を保存する</label>
+          </div>
+        </div>
       </div>
       <button className={styles.button} onClick={handleCreateGame}>
         開始
