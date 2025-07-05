@@ -15,8 +15,7 @@
     "lint:style": "stylelint \"src/**/*.css\" --ignore-path .gitignore",
     "fix:lint": "npm run lint:js -- --fix && npm run lint:style -- --fix && npm run lint:prettier -- --write",
     "start": "next start",
-    "typecheck": "npm run hcm && tsc --noEmit",
-    "postinstall": "prisma generate"
+    "typecheck": "npm run hcm && tsc --noEmit"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.0",
