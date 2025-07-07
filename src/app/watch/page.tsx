@@ -18,14 +18,42 @@ type BoardType = {
 
 const HistoryPage = () => {
   const [boards, setBoards] = useState<BoardType[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
     void handleHistoryFetch();
   }, []);
+
   const handleHistoryFetch = async () => {
-    const res: Response = await fetch('/api/history');
-    const data: BoardResponse = (await res.json()) as BoardResponse;
-    setBoards(data.boards);
+    try {
+      const res: Response = await fetch('/api/history');
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      const data: BoardResponse = (await res.json()) as BoardResponse;
+      if (data.boards) {
+        setBoards(data.boards);
+        setError(null);
+      } else {
+        setBoards([]);
+        setError('データが見つかりませんでした');
+      }
+    } catch (err) {
+      console.error('Error fetching history:', err);
+      setBoards([]);
+      setError('データの取得に失敗しました');
+    }
   };
+
+  if (error) {
+    return (
+      <div className={styles.container}>
+        <h1 className={styles.title}>観戦可能なゲーム一覧</h1>
+        <p>エラー: {error}</p>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>観戦可能なゲーム一覧</h1>

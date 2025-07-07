@@ -2,8 +2,9 @@ import { NextResponse } from 'next/server';
 import { PrismaClient } from '../../../generated/prisma';
 
 export const GET = async () => {
+  const prisma = new PrismaClient();
+
   try {
-    const prisma = new PrismaClient();
     const boards = await prisma.board.findMany({
       orderBy: {
         createdAt: 'desc',
@@ -23,7 +24,6 @@ export const GET = async () => {
       },
     });
 
-    await prisma.$disconnect();
     return NextResponse.json({ boards });
   } catch (error) {
     console.error('API Error:', error);
@@ -34,5 +34,7 @@ export const GET = async () => {
       },
       { status: 500 },
     );
+  } finally {
+    await prisma.$disconnect();
   }
 };
