@@ -161,7 +161,9 @@ const config = {
         "value": "rhel-openssl-3.0.x"
       }
     ],
-    "previewFeatures": [],
+    "previewFeatures": [
+      "driverAdapters"
+    ],
     "sourceFilePath": "C:\\Users\\iniad\\othello-online\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
@@ -176,6 +178,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -184,8 +187,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../src/generated/prisma\"\n  binaryTargets = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Board {\n  id           String   @id @default(uuid())\n  black        String\n  white        String\n  turn         Int\n  board        Json\n  end          Boolean\n  watch        Boolean  @default(false)\n  preservation Boolean  @default(false)\n  result       String   @default(\"\")\n  resultBlack  Int      @default(0)\n  resultWhite  Int      @default(0)\n  createdAt    DateTime @default(now())\n  updatedAt    DateTime @updatedAt\n}\n",
-  "inlineSchemaHash": "50ff07b10525dbf5ae3549075e329602d31926bb00bfb4abc9d6c2afc29203ea",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider        = \"prisma-client-js\"\n  output          = \"../src/generated/prisma\"\n  binaryTargets   = [\"native\", \"rhel-openssl-3.0.x\"]\n  engineType      = \"library\"\n  previewFeatures = [\"driverAdapters\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Board {\n  id           String   @id @default(uuid())\n  black        String\n  white        String\n  turn         Int\n  board        Json\n  end          Boolean\n  watch        Boolean  @default(false)\n  preservation Boolean  @default(false)\n  result       String   @default(\"\")\n  resultBlack  Int      @default(0)\n  resultWhite  Int      @default(0)\n  createdAt    DateTime @default(now())\n  updatedAt    DateTime @updatedAt\n}\n",
+  "inlineSchemaHash": "4be5b372a391451dc05b373cf34dff413e3f1e44ae5c10d60948f129f12ba8ad",
   "copyEngine": true
 }
 

@@ -21,6 +21,7 @@ tsconfig.tsbuildinfo
 npm-debug.log*
 
 # local env files
+.env
 .env.local
 .env.development.local
 .env.test.local
@@ -31,5 +32,3 @@ npm-debug.log*
 
 # Prisma 自動生成コードを Git に含めない
 src/generated/prisma/
-
-.env
