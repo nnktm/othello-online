@@ -2,7 +2,7 @@
 
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
-import styles from '../../start.module.css';
+import styles from '../../../styles/start.module.css';
 
 const GameStart = () => {
   const [whitePlayer, setWhitePlayer] = useState(``);

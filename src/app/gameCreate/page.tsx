@@ -1,7 +1,7 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import styles from '../create.module.css';
+import styles from '../../styles/create.module.css';
 type ApiResponse = { id: string };
 
 const GameCreate = () => {

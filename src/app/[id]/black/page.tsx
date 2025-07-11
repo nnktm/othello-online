@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import type { BoardResponse } from '../../../constants';
 import { DIRECTIONS, INITIAL_BOARD } from '../../../constants';
-import styles from '../../page.module.css';
+import styles from '../../../styles/page.module.css';
 //[cy][cx]に石を置くことが可能かどうか判断し可能な場合trueを返す
 const checkPutable = (cx: number, cy: number, board: number[][], turn: number) => {
   if (board[cy][cx] === 1 || board[cy][cx] === 2) {
