@@ -141,19 +141,20 @@
   }
 
   .board {
-    width: 40%;
+    width: 90%;
   }
 
   .infomation {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    width: 60%;
-    max-width: 60%;
+    width: 90%;
     margin-top: 1rem;
     margin-left: 0;
   }
 
   .showInformation {
-    font-size: 18px;
+    font-size: 14px;
   }
 
   .reset,
