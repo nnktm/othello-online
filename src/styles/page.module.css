@@ -54,6 +54,21 @@
   border-radius: 16px;
 }
 
+.return {
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+  font-size: 20px;
+  color: #113847;
+  text-align: center;
+  background-color: #c3c8cc;
+  border: double 4px #2c434d;
+  border-radius: 16px;
+}
+
+.return:hover {
+  background-color: #444f53;
+}
+
 .modal {
   position: fixed;
   top: 0;
@@ -125,10 +140,25 @@
     font-size: 14px;
   }
 
-  .reset,
   .return {
-    justify-content: center;
     width: 80%;
     font-size: 16px;
+    text-align: center;
+  }
+
+  .modalContent {
+    width: 95%;
+    max-width: none;
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .modalHeader h1 {
+    font-size: 1.5rem;
+  }
+
+  .modalClose {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
   }
 }

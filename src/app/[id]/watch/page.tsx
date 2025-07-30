@@ -2,6 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
+import GameEndModal from '../../../components/gameEndModal';
 import type { BoardResponse } from '../../../constants';
 import { DIRECTIONS, INITIAL_BOARD } from '../../../constants';
 import styles from '../../../styles/page.module.css';
@@ -102,24 +103,13 @@ const Watch = () => {
     <>
       <div className={styles.container}>
         {isEnd ? (
-          <div className={styles.modal}>
-            <div className={styles.modalContent}>
-              <div className={styles.modalHeader}>
-                <h1>ゲーム終了</h1>
-              </div>
-              <p>
-                黒の数{values.blackCell} 対 白の数{values.whiteCell}で
-              </p>
-              <h2>
-                {values.winner === isWhite || values.winner === isBlack
-                  ? `${JSON.stringify(values.winner)}の勝ち!!`
-                  : '引き分け'}
-              </h2>
-              <a href="/" className={styles.modalClose}>
-                閉じる
-              </a>
-            </div>
-          </div>
+          <GameEndModal
+            blackCell={values.blackCell}
+            whiteCell={values.whiteCell}
+            winner={values.winner}
+            isWhite={isWhite}
+            isBlack={isBlack}
+          />
         ) : null}
         <div className={styles.board}>
           {boardView.map((row, y) =>

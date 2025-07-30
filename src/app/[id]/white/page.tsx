@@ -91,14 +91,6 @@ const White = () => {
     setIsPutting(false);
   };
 
-  const boardReset = async () => {
-    await fetch(`/api/separate?id=${id}`, {
-      method: 'PUT',
-      body: JSON.stringify({ id, board: INITIAL_BOARD, turn: 1 }),
-    });
-    void handleFetchBoard();
-  };
-
   const handleOnClick = async (x: number, y: number) => {
     if (isLoading || isPutting) return;
     if (turn === 1) return;
