@@ -239,9 +239,6 @@ const White = () => {
             <p>黒：{values.blackCell}枚</p>
             <p>白：{values.whiteCell}枚</p>
           </div>
-          <button className={styles.reset} onClick={boardReset}>
-            盤面をリセットする
-          </button>
           <a href="/" className={styles.return}>
             メニューに戻る
           </a>

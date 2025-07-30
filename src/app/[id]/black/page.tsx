@@ -2,6 +2,8 @@
 
 import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
+import GameEndModal from '../../../components/gameEndModal';
+import WaitingWhiteModal from '../../../components/waitingWhiteModal';
 import type { BoardResponse } from '../../../constants';
 import { DIRECTIONS, INITIAL_BOARD } from '../../../constants';
 import styles from '../../../styles/page.module.css';
@@ -194,36 +196,15 @@ const Black = () => {
   return (
     <>
       <div className={styles.container}>
-        {isWhite === `` ? (
-          <div className={styles.modal}>
-            <div className={styles.modalContent}>
-              <h1>プレイヤーを待っています</h1>
-              <p>プレイヤーの参加までしばらくお待ち下さい</p>
-              <a href="/" className={styles.modalClose} onClick={handleDeleteBoard}>
-                ゲームを削除して閉じる
-              </a>
-            </div>
-          </div>
-        ) : null}
+        {isWhite === `` ? <WaitingWhiteModal handleDeleteBoard={handleDeleteBoard} /> : null}
         {isEnd ? (
-          <div className={styles.modal}>
-            <div className={styles.modalContent}>
-              <div className={styles.modalHeader}>
-                <h1>ゲーム終了</h1>
-              </div>
-              <p>
-                黒の数{values.blackCell} 対 白の数{values.whiteCell}で
-              </p>
-              <h2>
-                {values.winner === isWhite || values.winner === isBlack
-                  ? `${JSON.stringify(values.winner)}の勝ち!!`
-                  : '引き分け'}
-              </h2>
-              <a href="/" className={styles.modalClose}>
-                閉じる
-              </a>
-            </div>
-          </div>
+          <GameEndModal
+            blackCell={values.blackCell}
+            whiteCell={values.whiteCell}
+            winner={values.winner}
+            isWhite={isWhite}
+            isBlack={isBlack}
+          />
         ) : null}
         <div className={styles.board}>
           {boardView.map((row, y) =>
@@ -259,9 +240,6 @@ const Black = () => {
             <p>黒：{values.blackCell}枚</p>
             <p>白：{values.whiteCell}枚</p>
           </div>
-          <button className={styles.reset} onClick={boardReset}>
-            盤面をリセットする
-          </button>
           <a href="/" className={styles.return}>
             メニューに戻る
           </a>

@@ -54,84 +54,6 @@
   border-radius: 16px;
 }
 
-.reset,
-.return {
-  padding: 0.8rem 1.5rem;
-  margin: 0.5rem 0;
-  font-size: 18px;
-  color: #113847;
-  cursor: pointer;
-  background-color: #c3c8cc;
-  border: double 4px #2c434d;
-  border-radius: 16px;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-}
-
-.reset:hover,
-.return:hover {
-  color: #fff;
-  background-color: #444f53;
-}
-
-.modal {
-  position: fixed;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgb(255 255 255 / 50%);
-}
-
-.modalContent {
-  padding: 2rem;
-  text-align: center;
-  background-color: #969fa3;
-  border: double 20px #fff;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgb(0 0 0 / 48%);
-}
-
-.modalHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.modalContent h1 {
-  margin: 0;
-  font-size: 36px;
-}
-
-.modalContent h2 {
-  margin: 1rem 0;
-  font-size: 28px;
-  border-bottom: double 2px #19333d;
-}
-
-.modalClose {
-  padding: 0.6rem 1.2rem;
-  margin: 2rem auto 0;
-  font-size: 18px;
-  color: #113847;
-  cursor: pointer;
-  background-color: transparent;
-  border: solid 2px #596b72;
-  border-radius: 8px;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-}
-
-.modalClose:hover {
-  color: #fff;
-  background-color: #0c2935;
-}
-
 @media (width <= 768px) {
   .container {
     display: flex;
@@ -161,24 +83,6 @@
   .return {
     justify-content: center;
     width: 80%;
-    font-size: 16px;
-  }
-
-  .modalContent {
-    padding: 1rem;
-    font-size: 18px;
-    border-width: 10px;
-  }
-
-  .modalContent h1 {
-    font-size: 28px;
-  }
-
-  .modalContent h2 {
-    font-size: 22px;
-  }
-
-  .modalClose {
     font-size: 16px;
   }
 }
