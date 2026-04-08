@@ -3,10 +3,8 @@
 import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import GameEndModal from '../../../components/gameEndModal';
-import SettingSidebar from '../../../components/settingSideber';
 import type { BoardResponse } from '../../../constants';
 import { DIRECTIONS, INITIAL_BOARD } from '../../../constants';
-import { COLOR_SET_KEYS, colorSet } from '../../../constants/color';
 import styles from '../../../styles/page.module.css';
 
 //[cy][cx]に石を置くことが可能かどうか判断し可能な場合trueを返す
@@ -37,8 +35,6 @@ const Watch = () => {
   const [turn, setTurn] = useState<number>(1);
   const [isBlack, setIsBlack] = useState(`blackPlayer`);
   const [isWhite, setIsWhite] = useState(`whitePlayer`);
-  const [isSideBarOpen, setIsSidebarOpen] = useState(false);
-  const [nowColor, setNowColor] = useState<string>(COLOR_SET_KEYS[0]);
 
   const params = useParams();
   const id = params.id as string;
@@ -113,62 +109,26 @@ const Watch = () => {
             winner={values.winner}
             isWhite={isWhite}
             isBlack={isBlack}
-            nowColor={nowColor}
           />
         ) : null}
-        <button className={styles.hamburgerButton} onClick={() => setIsSidebarOpen(true)}>
-          <div className={styles.hamburgerLine} />
-          <div className={styles.hamburgerLine} />
-          <div className={styles.hamburgerLine} />
-        </button>
-        {isSideBarOpen ? (
-          <SettingSidebar
-            handleCloseSidebar={() => setIsSidebarOpen(false)}
-            nowColor={nowColor}
-            setNowColor={setNowColor}
-          />
-        ) : null}
-        <div
-          className={styles.board}
-          style={{
-            backgroundColor: colorSet[nowColor].background,
-            borderColor: colorSet[nowColor].border,
-          }}
-        >
+        <div className={styles.board}>
           {boardView.map((row, y) =>
             row.map((color, x) => (
-              <div
-                key={`${x}-${y}`}
-                className={styles.cell}
-                style={{ borderColor: colorSet[nowColor].line }}
-              >
+              <div key={`${x}-${y}`} className={styles.cell}>
                 {color === 1 ? (
                   <div
                     className={styles.stone}
-                    style={{
-                      backgroundColor: colorSet[nowColor].cellBlack,
-                      width: '70%',
-                      height: '70%',
-                    }}
+                    style={{ backgroundColor: '#212b33', width: '70%', height: '70%' }}
                   />
                 ) : color === 2 ? (
                   <div
                     className={styles.stone}
-                    style={{
-                      backgroundColor: colorSet[nowColor].cellWhite,
-                      border: `1px solid ${colorSet[nowColor].whiteCellBorder}`,
-                      width: '70%',
-                      height: '70%',
-                    }}
+                    style={{ backgroundColor: 'white', width: '70%', height: '70%' }}
                   />
                 ) : color === 3 ? (
                   <div
                     className={styles.stone}
-                    style={{
-                      backgroundColor: colorSet[nowColor].cellCanPut,
-                      width: '30%',
-                      height: '30%',
-                    }}
+                    style={{ backgroundColor: '#d86161', width: '30%', height: '30%' }}
                   />
                 ) : null}
               </div>
@@ -176,14 +136,7 @@ const Watch = () => {
           )}
         </div>
         <div className={styles.infomation}>
-          <div
-            className={styles.showInformation}
-            style={{
-              backgroundColor: colorSet[nowColor].background,
-              borderColor: colorSet[nowColor].border,
-              color: colorSet[nowColor].text,
-            }}
-          >
+          <div className={styles.showInformation}>
             <p>
               {turn === 1
                 ? `${JSON.stringify(isBlack)}のターン`
@@ -192,15 +145,7 @@ const Watch = () => {
             <p>黒：{values.blackCell}枚</p>
             <p>白：{values.whiteCell}枚</p>
           </div>
-          <a
-            href="/"
-            className={styles.return}
-            style={{
-              backgroundColor: colorSet[nowColor].button,
-              borderColor: colorSet[nowColor].border,
-              color: colorSet[nowColor].text,
-            }}
-          >
+          <a href="/" className={styles.return}>
             メニューに戻る
           </a>
         </div>
