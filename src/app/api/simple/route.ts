@@ -1,8 +1,8 @@
-import { PrismaClient } from '../../../generated/prisma';
+import { prisma } from '../../../lib/prisma';
+
+export const runtime = 'nodejs';
 
 export const GET = async () => {
-  const prisma = new PrismaClient();
-
   try {
     const board = await prisma.board.findUnique({
       where: {
@@ -19,14 +19,10 @@ export const GET = async () => {
   } catch (error) {
     console.error('API Error:', error);
     return Response.json({ error: 'Internal Server Error' }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
   }
 };
 
 export const PUT = async (req: Request) => {
-  const prisma = new PrismaClient();
-
   try {
     const { board, turn } = (await req.json()) as { board: number[][]; turn: number };
 
@@ -39,14 +35,10 @@ export const PUT = async (req: Request) => {
   } catch (error) {
     console.error('API Error:', error);
     return Response.json({ error: 'Internal Server Error' }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
   }
 };
 
 export const POST = async (req: Request) => {
-  const prisma = new PrismaClient();
-
   try {
     const { blackPlayer } = (await req.json()) as {
       blackPlayer: string;
@@ -79,7 +71,5 @@ export const POST = async (req: Request) => {
   } catch (error) {
     console.error('API Error:', error);
     return Response.json({ error: 'Internal Server Error' }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
   }
 };

@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '../../../generated/prisma';
+import { prisma } from '../../../lib/prisma';
+
+export const runtime = 'nodejs';
 
 export const GET = async () => {
-  const prisma = new PrismaClient();
-
   try {
     const boards = await prisma.board.findMany({
       orderBy: {
@@ -34,7 +34,5 @@ export const GET = async () => {
       },
       { status: 500 },
     );
-  } finally {
-    await prisma.$disconnect();
   }
 };

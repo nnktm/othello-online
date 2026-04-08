@@ -1,8 +1,8 @@
-import { PrismaClient } from '../../../generated/prisma';
+import { prisma } from '../../../lib/prisma';
+
+export const runtime = 'nodejs';
 
 export const GET = async (req: Request) => {
-  const prisma = new PrismaClient();
-
   try {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get('id');
@@ -27,14 +27,10 @@ export const GET = async (req: Request) => {
   } catch (error) {
     console.error('API Error:', error);
     return Response.json({ error: 'Internal Server Error' }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
   }
 };
 
 export const PUT = async (req: Request) => {
-  const prisma = new PrismaClient();
-
   try {
     const { id, board, turn } = (await req.json()) as {
       id: string;
@@ -51,14 +47,10 @@ export const PUT = async (req: Request) => {
   } catch (error) {
     console.error('API Error:', error);
     return Response.json({ error: 'Internal Server Error' }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
   }
 };
 
 export const DELETE = async (req: Request) => {
-  const prisma = new PrismaClient();
-
   try {
     const { id } = (await req.json()) as { id: string };
     await prisma.board.delete({ where: { id } });
@@ -66,7 +58,5 @@ export const DELETE = async (req: Request) => {
   } catch (error) {
     console.error('API Error:', error);
     return Response.json({ error: 'Internal Server Error' }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
   }
 };
