@@ -1,13 +1,10 @@
-import type { NextConfig } from 'next';
-
-const nextConfig: NextConfig = {
+const nextConfig = {
   reactStrictMode: true,
   basePath:
     process.env.GITHUB_REPOSITORY !== undefined
       ? `/${process.env.GITHUB_REPOSITORY.split('/')[1]}`
       : '',
   trailingSlash: true,
-  eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
 };
 
